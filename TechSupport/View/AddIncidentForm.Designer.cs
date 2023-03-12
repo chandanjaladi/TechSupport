@@ -117,7 +117,7 @@
             // titleErrorLabel
             // 
             titleErrorLabel.AutoSize = true;
-            titleErrorLabel.Location = new Point(160, 95);
+            titleErrorLabel.Location = new Point(115, 95);
             titleErrorLabel.Name = "titleErrorLabel";
             titleErrorLabel.Size = new Size(57, 15);
             titleErrorLabel.TabIndex = 8;
@@ -127,7 +127,7 @@
             // descriptionErrorLabel
             // 
             descriptionErrorLabel.AutoSize = true;
-            descriptionErrorLabel.Location = new Point(160, 189);
+            descriptionErrorLabel.Location = new Point(115, 189);
             descriptionErrorLabel.Name = "descriptionErrorLabel";
             descriptionErrorLabel.Size = new Size(95, 15);
             descriptionErrorLabel.TabIndex = 9;
@@ -137,7 +137,7 @@
             // customerErrorLabel
             // 
             customerErrorLabel.AutoSize = true;
-            customerErrorLabel.Location = new Point(160, 244);
+            customerErrorLabel.Location = new Point(115, 244);
             customerErrorLabel.Name = "customerErrorLabel";
             customerErrorLabel.Size = new Size(98, 15);
             customerErrorLabel.TabIndex = 10;

@@ -36,23 +36,34 @@ namespace TechSupport.View
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
         {
+            string title = titleTextBox.Text;
+            string description = descriptionTextBox.Text;
+            if (title.Equals(""))
+            {
+                titleErrorLabel.Text = "Title cannot be empty!";
+                titleErrorLabel.ForeColor = Color.Red;
+                titleErrorLabel.Visible = true;
+            }
+
+            if (description.Equals(""))
+            {
+                descriptionErrorLabel.Text = "Description cannot be empty";
+                descriptionErrorLabel.ForeColor = Color.Red;
+                descriptionErrorLabel.Visible = true;
+            }
             try
             {
+                int customerId = Convert.ToInt32(customerIDTextBox.Text);
                 var incident = new Incident
                 {
-                    Title = titleTextBox.Text,
-                    Description = descriptionTextBox.Text,
-                    CustomerID = Convert.ToInt32(customerIDTextBox.Text)
+                    Title = title,
+                    Description = description,
+                    CustomerID = customerId
                 };
                 controller.Add(incident);
                 DialogResult = DialogResult.OK;
             }
-            catch (ArgumentNullException ex)
-            {
-                titleErrorLabel.Text = ex.Message;
-                titleErrorLabel.ForeColor = Color.Red;
-                titleErrorLabel.Visible = true;
-            }
+
             catch (ArgumentException ex)
             {
                 customerErrorLabel.Text = ex.Message;
@@ -61,15 +72,13 @@ namespace TechSupport.View
             }
             catch (FormatException)
             {
-                customerErrorLabel.Text = "Customer number cannot be a string or empty";
+                customerErrorLabel.Text = "CustomerID is invalid";
                 customerErrorLabel.ForeColor = Color.Red;
                 customerErrorLabel.Visible = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                descriptionErrorLabel.Text = ex.Message;
-                descriptionErrorLabel.ForeColor = Color.Red;
-                descriptionErrorLabel.Visible = true;
+
             }
         }
     }
