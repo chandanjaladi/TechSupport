@@ -25,7 +25,6 @@ namespace TechSupport
             var password = _incidentController.GetPassword();
             if (username == usernameTextBox.Text && password == passwordMaskedTextBox.Text)
             {
-                errorLabel.Visible = false;
                 var mainform = new MainForm();
                 mainform.ShowDialog();
                 usernameTextBox.Clear();
