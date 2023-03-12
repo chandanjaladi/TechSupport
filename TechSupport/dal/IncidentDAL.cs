@@ -33,6 +33,7 @@ namespace TechSupport.DAL
         {
             return customerIncidents;
         }
+
         /// <summary>
         /// Adds the incidents of customers.
         /// </summary>
