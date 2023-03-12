@@ -78,6 +78,8 @@
             Controls.Add(searchButton);
             Controls.Add(customerIDTextBox);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "SearchIncidentForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Search Incident";

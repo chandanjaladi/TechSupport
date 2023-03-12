@@ -54,6 +54,7 @@
             logoutLabel.TabIndex = 1;
             logoutLabel.TabStop = true;
             logoutLabel.Text = "Logout";
+            logoutLabel.LinkClicked += logoutLabel_LinkClicked;
             // 
             // addIncidentButton
             // 

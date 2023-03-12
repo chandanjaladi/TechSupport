@@ -15,7 +15,7 @@
             {
                 if (value == null || value == "")
                 {
-                    throw new ArgumentNullException("Title cannot be empty!");
+                    throw new ArgumentNullException(paramName:"", message: "Title cannot be empty!");
                 }
                 _title = value;
             }

@@ -28,6 +28,8 @@ namespace TechSupport
                 errorLabel.Visible = false;
                 var mainform = new MainForm();
                 mainform.ShowDialog();
+                usernameTextBox.Clear();
+                passwordMaskedTextBox.Clear();
 
             }
             else
