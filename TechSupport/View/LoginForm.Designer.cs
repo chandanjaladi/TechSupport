@@ -60,15 +60,17 @@
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(100, 23);
             usernameTextBox.TabIndex = 2;
+            usernameTextBox.TextChanged += usernameTextBox_TextChanged;
             // 
             // loginButton
             // 
-            loginButton.Location = new Point(154, 159);
+            loginButton.Location = new Point(154, 170);
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(75, 23);
             loginButton.TabIndex = 5;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButton_Click;
             // 
             // passwordMaskedTextBox
             // 
@@ -78,11 +80,12 @@
             passwordMaskedTextBox.Size = new Size(100, 23);
             passwordMaskedTextBox.TabIndex = 4;
             passwordMaskedTextBox.UseSystemPasswordChar = true;
+            passwordMaskedTextBox.MaskInputRejected += passwordMaskedTextBox_MaskInputRejected;
             // 
             // errorLabel
             // 
             errorLabel.AutoSize = true;
-            errorLabel.Location = new Point(112, 213);
+            errorLabel.Location = new Point(112, 147);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(32, 15);
             errorLabel.TabIndex = 6;
