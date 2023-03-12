@@ -51,6 +51,7 @@
             customerIDTextBox.Name = "customerIDTextBox";
             customerIDTextBox.Size = new Size(140, 23);
             customerIDTextBox.TabIndex = 1;
+            customerIDTextBox.TextChanged += CustomerIDTextBox_TextChanged;
             // 
             // searchButton
             // 
@@ -60,7 +61,7 @@
             searchButton.TabIndex = 2;
             searchButton.Text = "Search";
             searchButton.UseVisualStyleBackColor = true;
-            searchButton.Click += searchButton_Click;
+            searchButton.Click += SearchButton_Click;
             // 
             // customersIncidentsDataGridView
             // 

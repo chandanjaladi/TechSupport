@@ -6,6 +6,11 @@
         private string _description;
         private int _customerID;
 
+        public Incident() 
+        {
+            _title = "";
+            _description = "";
+        }
 
         public string Title
         {

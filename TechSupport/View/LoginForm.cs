@@ -18,7 +18,7 @@ namespace TechSupport
 
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             errorLabel.Visible = false;
             var username = _incidentController.GetUsername();
@@ -41,12 +41,12 @@ namespace TechSupport
             }
         }
 
-        private void usernameTextBox_TextChanged(object sender, EventArgs e)
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
             errorLabel.Visible = false;
         }
 
-        private void passwordMaskedTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void PasswordMaskedTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
             errorLabel.Visible = false;
         }

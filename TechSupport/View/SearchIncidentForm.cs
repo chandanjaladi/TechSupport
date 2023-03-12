@@ -15,7 +15,7 @@ namespace TechSupport.View
             _incidentDAL = new IncidentDAL();
         }
 
-        private void searchButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)
         {
             _incidentDAL.ClearIncidentsOfCustomers();
             try
@@ -52,6 +52,11 @@ namespace TechSupport.View
                 errorLabel.Visible = true;
                 customerIDTextBox.Clear();
             }
+        }
+
+        private void CustomerIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            errorLabel.Visible = false;
         }
     }
 }

@@ -54,7 +54,7 @@
             logoutLabel.TabIndex = 1;
             logoutLabel.TabStop = true;
             logoutLabel.Text = "Logout";
-            logoutLabel.LinkClicked += logoutLabel_LinkClicked;
+            logoutLabel.LinkClicked += LogoutLabel_LinkClicked;
             // 
             // addIncidentButton
             // 
@@ -64,7 +64,7 @@
             addIncidentButton.TabIndex = 2;
             addIncidentButton.Text = "Add Incident";
             addIncidentButton.UseVisualStyleBackColor = true;
-            addIncidentButton.Click += addIncidentButton_Click;
+            addIncidentButton.Click += AddIncidentButton_Click;
             // 
             // searchIncidentButton
             // 
@@ -74,7 +74,7 @@
             searchIncidentButton.TabIndex = 3;
             searchIncidentButton.Text = "Search Incident";
             searchIncidentButton.UseVisualStyleBackColor = true;
-            searchIncidentButton.Click += searchIncidentButton_Click;
+            searchIncidentButton.Click += SearchIncidentButton_Click;
             // 
             // incidentsDataGridView
             // 

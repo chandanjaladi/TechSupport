@@ -13,7 +13,7 @@ namespace TechSupport.View
             username.Text = _incidentController.GetUsername();
         }
 
-        private void addIncidentButton_Click(object sender, EventArgs e)
+        private void AddIncidentButton_Click(object sender, EventArgs e)
         {
             var addIncident = new AddIncidentForm();
             var result = addIncident.ShowDialog();
@@ -24,13 +24,13 @@ namespace TechSupport.View
             }
         }
 
-        private void searchIncidentButton_Click(object sender, EventArgs e)
+        private void SearchIncidentButton_Click(object sender, EventArgs e)
         {
             var searchIncident = new SearchIncidentForm();
             searchIncident.ShowDialog();
         }
 
-        private void logoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
         }

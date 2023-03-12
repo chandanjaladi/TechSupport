@@ -12,22 +12,22 @@ namespace TechSupport.View
             controller = new IncidentController();
         }
 
-        private void titleTextBox_TextChanged(object sender, EventArgs e)
+        private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
             titleErrorLabel.Visible = false;
         }
 
-        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             descriptionErrorLabel.Visible = false;
         }
 
-        private void customerIDTextBox_TextChanged(object sender, EventArgs e)
+        private void CustomerIDTextBox_TextChanged(object sender, EventArgs e)
         {
             customerErrorLabel.Visible = false;
         }
 
-        private void addIncidentButton_Click(object sender, EventArgs e)
+        private void AddIncidentButton_Click(object sender, EventArgs e)
         {
             try
             {

@@ -60,7 +60,7 @@
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(100, 23);
             usernameTextBox.TabIndex = 2;
-            usernameTextBox.TextChanged += usernameTextBox_TextChanged;
+            usernameTextBox.TextChanged += UsernameTextBox_TextChanged;
             // 
             // loginButton
             // 
@@ -70,7 +70,7 @@
             loginButton.TabIndex = 5;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
-            loginButton.Click += loginButton_Click;
+            loginButton.Click += LoginButton_Click;
             // 
             // passwordMaskedTextBox
             // 
@@ -80,7 +80,7 @@
             passwordMaskedTextBox.Size = new Size(100, 23);
             passwordMaskedTextBox.TabIndex = 4;
             passwordMaskedTextBox.UseSystemPasswordChar = true;
-            passwordMaskedTextBox.MaskInputRejected += passwordMaskedTextBox_MaskInputRejected;
+            passwordMaskedTextBox.MaskInputRejected += PasswordMaskedTextBox_MaskInputRejected;
             // 
             // errorLabel
             // 
