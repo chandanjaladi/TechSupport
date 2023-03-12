@@ -28,6 +28,7 @@ namespace TechSupport.Controller
         {
             return _username;
         }
+
         /// <summary>
         /// Gets the password.
         /// </summary>
