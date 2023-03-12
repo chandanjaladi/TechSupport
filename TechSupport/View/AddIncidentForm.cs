@@ -3,6 +3,7 @@ using TechSupport.Model;
 
 namespace TechSupport.View
 {
+
     /// <summary>
     /// This class is used to add incidents
     /// </summary>

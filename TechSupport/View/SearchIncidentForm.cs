@@ -4,6 +4,7 @@ using TechSupport.Model;
 
 namespace TechSupport.View
 {
+
     /// <summary>
     /// This class is used for searching incidents
     /// </summary>

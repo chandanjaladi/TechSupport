@@ -2,6 +2,7 @@
 
 namespace TechSupport.View
 {
+
     /// <summary>
     /// This class is used for main form
     /// </summary>

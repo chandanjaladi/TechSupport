@@ -19,6 +19,7 @@ namespace TechSupport.Controller
         {
             _incidentDal = new IncidentDAL();
         }
+
         /// <summary>
         /// Gets the username.
         /// </summary>

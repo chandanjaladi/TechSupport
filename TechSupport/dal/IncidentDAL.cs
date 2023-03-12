@@ -17,6 +17,7 @@ namespace TechSupport.DAL
         {
             s_incidents.Add(incident);
         }
+
         /// <summary>
         /// Gets the incidents.
         /// </summary>
