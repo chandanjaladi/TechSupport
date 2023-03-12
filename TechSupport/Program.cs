@@ -1,3 +1,5 @@
+using TechSupport.View;
+
 namespace TechSupport
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace TechSupport
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+            Application.Run(new AddIncidentForm());
         }
     }
 }

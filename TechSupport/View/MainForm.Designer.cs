@@ -94,7 +94,7 @@
             Controls.Add(username);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Main Form";
+            Text = "Tech Support";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

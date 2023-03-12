@@ -77,6 +77,7 @@
             passwordMaskedTextBox.PasswordChar = '*';
             passwordMaskedTextBox.Size = new Size(100, 23);
             passwordMaskedTextBox.TabIndex = 4;
+            passwordMaskedTextBox.UseSystemPasswordChar = true;
             // 
             // errorLabel
             // 
@@ -103,7 +104,7 @@
             MinimizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Login Form";
+            Text = "Login";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
