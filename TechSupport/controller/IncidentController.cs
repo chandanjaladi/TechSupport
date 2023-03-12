@@ -13,7 +13,6 @@ namespace TechSupport.Controller
         {
             _incidentDal = new IncidentDAL();
         }
-
         public string GetUsername()
         {
             return _username;
