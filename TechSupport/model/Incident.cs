@@ -29,7 +29,7 @@
             {
                 if (value == null || value == "")
                 {
-                    throw new ArgumentNullException("Description cannot be empty!");
+                    throw new Exception("Description cannot be empty!");
                 }
                 _description = value;
             }
@@ -43,7 +43,7 @@
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentNullException("CustomerID cannot be less than 0!");
+                    throw new ArgumentException("CustomerID cannot be less than 0!");
                 }
                 _customerID = value;
             }

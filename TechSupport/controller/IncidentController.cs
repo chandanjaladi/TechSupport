@@ -1,4 +1,5 @@
 ﻿using TechSupport.DAL;
+using TechSupport.Model;
 
 namespace TechSupport.Controller
 {
@@ -21,6 +22,16 @@ namespace TechSupport.Controller
         public string GetPassword()
         {
             return _password;
+        }
+
+        public List<Incident> GetIncidents() 
+        {
+            return _incidentDal.GetIncidents();
+        }
+
+        public void Add(Incident incident) 
+        {
+            _incidentDal.Add(incident);
         }
     }
 }

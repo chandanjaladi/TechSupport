@@ -85,6 +85,7 @@
             titleTextBox.Name = "titleTextBox";
             titleTextBox.Size = new Size(138, 23);
             titleTextBox.TabIndex = 4;
+            titleTextBox.TextChanged += titleTextBox_TextChanged;
             // 
             // descriptionTextBox
             // 
@@ -93,6 +94,7 @@
             descriptionTextBox.Name = "descriptionTextBox";
             descriptionTextBox.Size = new Size(138, 68);
             descriptionTextBox.TabIndex = 5;
+            descriptionTextBox.TextChanged += descriptionTextBox_TextChanged;
             // 
             // customerIDTextBox
             // 
@@ -100,6 +102,7 @@
             customerIDTextBox.Name = "customerIDTextBox";
             customerIDTextBox.Size = new Size(138, 23);
             customerIDTextBox.TabIndex = 6;
+            customerIDTextBox.TextChanged += customerIDTextBox_TextChanged;
             // 
             // addIncidentButton
             // 
@@ -109,6 +112,7 @@
             addIncidentButton.TabIndex = 7;
             addIncidentButton.Text = "Add Incident";
             addIncidentButton.UseVisualStyleBackColor = true;
+            addIncidentButton.Click += addIncidentButton_Click;
             // 
             // titleErrorLabel
             // 

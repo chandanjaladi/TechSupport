@@ -32,8 +32,8 @@
             logoutLabel = new LinkLabel();
             addIncidentButton = new Button();
             searchIncidentButton = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            incidentsDataGridView = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)incidentsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // username
@@ -63,6 +63,7 @@
             addIncidentButton.TabIndex = 2;
             addIncidentButton.Text = "Add Incident";
             addIncidentButton.UseVisualStyleBackColor = true;
+            addIncidentButton.Click += addIncidentButton_Click;
             // 
             // searchIncidentButton
             // 
@@ -72,22 +73,23 @@
             searchIncidentButton.TabIndex = 3;
             searchIncidentButton.Text = "Search Incident";
             searchIncidentButton.UseVisualStyleBackColor = true;
+            searchIncidentButton.Click += searchIncidentButton_Click;
             // 
-            // dataGridView1
+            // incidentsDataGridView
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 125);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(527, 150);
-            dataGridView1.TabIndex = 4;
+            incidentsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            incidentsDataGridView.Location = new Point(12, 125);
+            incidentsDataGridView.Name = "incidentsDataGridView";
+            incidentsDataGridView.RowTemplate.Height = 25;
+            incidentsDataGridView.Size = new Size(527, 150);
+            incidentsDataGridView.TabIndex = 4;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(551, 287);
-            Controls.Add(dataGridView1);
+            Controls.Add(incidentsDataGridView);
             Controls.Add(searchIncidentButton);
             Controls.Add(addIncidentButton);
             Controls.Add(logoutLabel);
@@ -95,7 +97,7 @@
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Tech Support";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)incidentsDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -106,6 +108,6 @@
         private LinkLabel logoutLabel;
         private Button addIncidentButton;
         private Button searchIncidentButton;
-        private DataGridView dataGridView1;
+        private DataGridView incidentsDataGridView;
     }
 }
