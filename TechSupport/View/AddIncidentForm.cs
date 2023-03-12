@@ -3,9 +3,16 @@ using TechSupport.Model;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// This class is used to add incidents
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class AddIncidentForm : Form
     {
         private IncidentController controller;
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
         public AddIncidentForm()
         {
             InitializeComponent();

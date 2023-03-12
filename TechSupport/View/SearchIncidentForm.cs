@@ -4,10 +4,17 @@ using TechSupport.Model;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// This class is used for searching incidents
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class SearchIncidentForm : Form
     {
         private IncidentController _controller;
         private IncidentDAL _incidentDAL;
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
         public SearchIncidentForm()
         {
             InitializeComponent();

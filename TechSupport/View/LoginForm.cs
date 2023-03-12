@@ -3,9 +3,16 @@ using TechSupport.View;
 
 namespace TechSupport
 {
+    /// <summary>
+    /// This class is used for login form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class LoginForm : Form
     {
         private IncidentController _incidentController;
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
         public LoginForm()
         {
             InitializeComponent();
@@ -26,8 +33,11 @@ namespace TechSupport
             if (username == usernameTextBox.Text && password == passwordMaskedTextBox.Text)
             {
                 var mainform = new MainForm();
-                mainform.Show();
+                mainform.SetController(_incidentController);
+                this.Hide();
+                mainform.ShowDialog(this);
                 this.Close();
+                
                 usernameTextBox.Clear();
                 passwordMaskedTextBox.Clear();
 
