@@ -35,9 +35,16 @@ namespace TechSupport
                 var mainform = new MainForm();
                 mainform.SetController(_incidentController);
                 this.Hide();
-                mainform.ShowDialog(this);
-                this.Close();
-                
+                var value = mainform.ShowDialog();
+                if (value != DialogResult.OK)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    this.Show();
+                }
+
                 usernameTextBox.Clear();
                 passwordMaskedTextBox.Clear();
 

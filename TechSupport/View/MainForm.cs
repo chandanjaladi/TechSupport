@@ -51,7 +51,10 @@ namespace TechSupport.View
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
-            Owner.Show();
+            //var login = new LoginForm();
+            //login.setIncidentController(_incidentController);
+            //login.Show();
+            DialogResult = DialogResult.OK;
         }
     }
 }
