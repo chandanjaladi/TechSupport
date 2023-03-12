@@ -32,6 +32,7 @@
             customerIDTextBox = new TextBox();
             searchButton = new Button();
             customersIncidentsDataGridView = new DataGridView();
+            errorLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)customersIncidentsDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -59,6 +60,7 @@
             searchButton.TabIndex = 2;
             searchButton.Text = "Search";
             searchButton.UseVisualStyleBackColor = true;
+            searchButton.Click += searchButton_Click;
             // 
             // customersIncidentsDataGridView
             // 
@@ -68,12 +70,24 @@
             customersIncidentsDataGridView.RowTemplate.Height = 25;
             customersIncidentsDataGridView.Size = new Size(473, 150);
             customersIncidentsDataGridView.TabIndex = 3;
+            customersIncidentsDataGridView.Visible = false;
+            // 
+            // errorLabel
+            // 
+            errorLabel.AutoSize = true;
+            errorLabel.Location = new Point(138, 87);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(38, 15);
+            errorLabel.TabIndex = 4;
+            errorLabel.Text = "label2";
+            errorLabel.Visible = false;
             // 
             // SearchIncidentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(497, 287);
+            Controls.Add(errorLabel);
             Controls.Add(customersIncidentsDataGridView);
             Controls.Add(searchButton);
             Controls.Add(customerIDTextBox);
@@ -94,5 +108,6 @@
         private TextBox customerIDTextBox;
         private Button searchButton;
         private DataGridView customersIncidentsDataGridView;
+        private Label errorLabel;
     }
 }

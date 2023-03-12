@@ -10,6 +10,7 @@ namespace TechSupport.View
         {
             InitializeComponent();
             _incidentController = new IncidentController();
+            username.Text = _incidentController.GetUsername();
         }
 
         private void addIncidentButton_Click(object sender, EventArgs e)

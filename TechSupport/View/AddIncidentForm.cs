@@ -52,7 +52,7 @@ namespace TechSupport.View
                 customerErrorLabel.ForeColor = Color.Red;
                 customerErrorLabel.Visible = true;
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 customerErrorLabel.Text = "Customer number cannot be a string or empty";
                 customerErrorLabel.ForeColor = Color.Red;
