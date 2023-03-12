@@ -33,6 +33,8 @@ namespace TechSupport.View
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
+            LoginForm form = new LoginForm();
+            form.Show();
         }
     }
 }

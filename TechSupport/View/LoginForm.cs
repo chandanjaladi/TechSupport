@@ -26,7 +26,8 @@ namespace TechSupport
             if (username == usernameTextBox.Text && password == passwordMaskedTextBox.Text)
             {
                 var mainform = new MainForm();
-                mainform.ShowDialog();
+                mainform.Show();
+                this.Close();
                 usernameTextBox.Clear();
                 passwordMaskedTextBox.Clear();
 
