@@ -18,7 +18,15 @@ namespace TechSupport.View
             {
                 displayIncident1.RefreshIncidents();
             }
+            if (tabControl1.SelectedTab == openIncidentsTabPage)
+            {
+                openIncidents1.displayOpenIncidents();
+            }
         }
 
+        private void logoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
     }
 }

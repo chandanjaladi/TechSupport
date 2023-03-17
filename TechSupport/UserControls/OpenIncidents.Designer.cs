@@ -29,16 +29,29 @@
         private void InitializeComponent()
         {
             openedIncidentsListView = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
             SuspendLayout();
             // 
             // openedIncidentsListView
             // 
+            openedIncidentsListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
             openedIncidentsListView.Dock = DockStyle.Fill;
             openedIncidentsListView.Location = new Point(0, 0);
             openedIncidentsListView.Name = "openedIncidentsListView";
             openedIncidentsListView.Size = new Size(591, 292);
             openedIncidentsListView.TabIndex = 0;
+            openedIncidentsListView.TileSize = new Size(1, 1);
             openedIncidentsListView.UseCompatibleStateImageBehavior = false;
+            openedIncidentsListView.SelectedIndexChanged += openedIncidentsListView_SelectedIndexChanged;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Product Code";
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Date Opened";
             // 
             // OpenIncidents
             // 
@@ -53,5 +66,7 @@
         #endregion
 
         private ListView openedIncidentsListView;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
     }
 }

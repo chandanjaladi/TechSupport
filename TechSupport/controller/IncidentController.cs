@@ -31,6 +31,11 @@ namespace TechSupport.Controller
             return _username;
         }
 
+        public List<OpenIncidents> GetOpenIncidents() 
+        {
+            return _incidentDBDAL.GetOpenIncidents();
+        }
+
         /// <summary>
         /// Gets the password.
         /// </summary>
