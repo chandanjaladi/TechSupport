@@ -10,7 +10,7 @@ namespace TechSupport.DAL
             var openIncidents = new List<OpenIncidents>();
             using var connection = DBConnection.GetConnection();
             connection.Open();
-            const string query = "select Incidents.ProductCode,Incidents.DateOpened,Customers.Name as customerName,Technicians.Name,Incidents.Title from Incidents,Technicians,Customers where Incidents.CustomerID = Customers.CustomerID and Incidents.TechID = Technicians.TechID";
+            const string query = "select Incidents.ProductCode,Incidents.DateOpened,Customers.Name as customerName,Technicians.Name,Incidents.Title from Incidents,Technicians,Customers where Incidents.CustomerID = Customers.CustomerID and Incidents.TechID = Technicians.TechID and Incidents.DateClosed is null";
             using var command = new SqlCommand(query,connection);
             using var reader = command.ExecuteReader();
             var productCodeOrdinal = reader.GetOrdinal("ProductCode");

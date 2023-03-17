@@ -44,7 +44,6 @@ namespace TechSupport.UserControls
                 openedIncidentsListView.Items.Add(lv);
             }
 
-
         }
     }
 }
