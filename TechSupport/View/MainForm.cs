@@ -30,10 +30,16 @@ namespace TechSupport.View
             var result = addIncident.ShowDialog();
             if (result == DialogResult.OK)
             {
-                incidentsDataGridView.DataSource = null;
-                incidentsDataGridView.DataSource = _incidentController.GetIncidents();
+                RefreshIncidents();
             }
         }
+
+        public void RefreshIncidents()
+        {
+            incidentsDataGridView.DataSource = null;
+            incidentsDataGridView.DataSource = _incidentController.GetIncidents();
+        }
+
         /// <summary>
         /// Sets the controller.
         /// </summary>

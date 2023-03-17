@@ -8,7 +8,6 @@ namespace TechSupport.DAL
     public class IncidentDAL
     {
         private static readonly List<Incident> s_incidents = new List<Incident>();
-        private List<Incident> customerIncidents = new List<Incident>();
         /// <summary>
         /// Adds the specified incident.
         /// </summary>
@@ -26,37 +25,11 @@ namespace TechSupport.DAL
         {
             return s_incidents;
         }
-        /// <summary>
-        /// Gets the customer incidents.
-        /// </summary>
-        /// <returns>List of customer incidents</returns>
-        public List<Incident> GetCustomerIncidents()
-        {
-            return customerIncidents;
-        }
+        
 
-        /// <summary>
-        /// Adds the incidents of customers.
-        /// </summary>
-        /// <param name="incident">The incident.</param>
-        public void AddIncidentsOfCustomers(Incident incident)
+        public List<Incident> getSpecificCustomerIncidents(int customerID)
         {
-            customerIncidents.Add(incident);
-        }
-        /// <summary>
-        /// Clears the incidents of customers.
-        /// </summary>
-        public void ClearIncidentsOfCustomers()
-        {
-            customerIncidents.Clear();
-        }
-        /// <summary>
-        /// Size of customers incidents.
-        /// </summary>
-        /// <returns></returns>
-        public int SizeOfCustomersIncidents()
-        {
-            return customerIncidents.Count;
+            return s_incidents.FindAll(e => e.CustomerID == customerID);
         }
 
     }

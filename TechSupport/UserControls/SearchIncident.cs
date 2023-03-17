@@ -2,46 +2,44 @@
 using TechSupport.DAL;
 using TechSupport.Model;
 
-namespace TechSupport.View
+namespace TechSupport.UserControls
 {
-
-    /// <summary>
-    /// This class is used for searching incidents
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
-    public partial class SearchIncidentForm : Form
+    public partial class SearchIncident : System.Windows.Forms.UserControl
     {
+        public SearchIncident()
+        {
+
+            InitializeComponent();
+            _controller = new IncidentController();
+
+        }
+
         private IncidentController _controller;
-        
+
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
-        public SearchIncidentForm()
-        {
-            InitializeComponent();
-            _controller = new IncidentController();
-            
-        }
+        //public SearchIncidentForm()
+        //{
+        //    InitializeComponent();
+        //    _controller = new IncidentController();
+        //    _incidentDAL = new IncidentDAL();
+        //}
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 var customerID = Convert.ToInt32(customerIDTextBox.Text);
-                foreach (Incident incident in _controller.GetIncidents())
-                {
-                    if (customerID == incident.CustomerID)
-                    {
-                       
-                    }
-                }
-                //int count = _incidentDAL.SizeOfCustomersIncidents();
-                //if (count != 0)
+                customersIncidentsDataGridView.Visible = true;
+                customersIncidentsDataGridView.DataSource = _controller.specificCustomerIncidents(customerID);
+
+                //if (false)
                 //{
                 //    errorLabel.Visible = false;
-                //    customersIncidentsDataGridView.Visible = true;
-                //    customersIncidentsDataGridView.DataSource = null;
+                //    C
+                //    RefreshIncidents();
                 //}
                 //else
                 //{
@@ -54,6 +52,7 @@ namespace TechSupport.View
             }
             catch (FormatException)
             {
+                customersIncidentsDataGridView.Visible = false;
                 errorLabel.Text = "Enter a valid customer id";
                 errorLabel.ForeColor = Color.Red;
                 errorLabel.Visible = true;
@@ -61,7 +60,13 @@ namespace TechSupport.View
             }
         }
 
-        private void CustomerIDTextBox_TextChanged(object sender, EventArgs e)
+        public void RefreshIncidents()
+        {
+            customersIncidentsDataGridView.Visible = true;
+            customersIncidentsDataGridView.DataSource = null;
+        }
+
+        public void CustomerIDTextBox_TextChanged(object sender, EventArgs e)
         {
             errorLabel.Visible = false;
         }

@@ -53,5 +53,10 @@ namespace TechSupport.Controller
         {
             _incidentDal.Add(incident);
         }
+
+        public List<Incident> specificCustomerIncidents(int customerID) 
+        {
+            return _incidentDal.getSpecificCustomerIncidents(customerID);
+        }
     }
 }

@@ -21,11 +21,6 @@ namespace TechSupport
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoginButton_Click(object sender, EventArgs e)
         {
             errorLabel.Visible = false;
@@ -33,8 +28,7 @@ namespace TechSupport
             var password = _incidentController.GetPassword();
             if (username == usernameTextBox.Text && password == passwordMaskedTextBox.Text)
             {
-                var mainform = new MainForm();
-                mainform.SetController(_incidentController);
+                using var mainform = new MainDashboard();
                 this.Hide();
                 var value = mainform.ShowDialog();
                 if (value != DialogResult.OK)
