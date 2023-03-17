@@ -9,6 +9,7 @@ namespace TechSupport.Controller
     public class IncidentController
     {
         private IncidentDAL _incidentDal;
+        private IncidentDBDal _incidentDBDAL;
         private string _username = "jane";
         private string _password = "test1234";
 
@@ -18,6 +19,7 @@ namespace TechSupport.Controller
         public IncidentController()
         {
             _incidentDal = new IncidentDAL();
+            _incidentDBDAL = new IncidentDBDal();
         }
 
         /// <summary>

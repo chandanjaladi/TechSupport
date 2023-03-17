@@ -35,12 +35,15 @@
             displayIncident1 = new UserControls.DisplayIncident();
             searchIncident = new TabPage();
             searchIncident1 = new UserControls.SearchIncident();
+            openIncidentsTabPage = new TabPage();
             logoutLabel = new LinkLabel();
             username = new Label();
+            openIncidents1 = new UserControls.OpenIncidents();
             tabControl1.SuspendLayout();
             addIncident.SuspendLayout();
             displayIncident.SuspendLayout();
             searchIncident.SuspendLayout();
+            openIncidentsTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -48,6 +51,7 @@
             tabControl1.Controls.Add(addIncident);
             tabControl1.Controls.Add(displayIncident);
             tabControl1.Controls.Add(searchIncident);
+            tabControl1.Controls.Add(openIncidentsTabPage);
             tabControl1.Dock = DockStyle.Bottom;
             tabControl1.Location = new Point(0, 38);
             tabControl1.Margin = new Padding(3, 2, 3, 2);
@@ -118,6 +122,16 @@
             searchIncident1.Size = new Size(692, 390);
             searchIncident1.TabIndex = 0;
             // 
+            // openIncidentsTabPage
+            // 
+            openIncidentsTabPage.Controls.Add(openIncidents1);
+            openIncidentsTabPage.Location = new Point(4, 24);
+            openIncidentsTabPage.Name = "openIncidentsTabPage";
+            openIncidentsTabPage.Size = new Size(692, 390);
+            openIncidentsTabPage.TabIndex = 3;
+            openIncidentsTabPage.Text = "Open Incidents";
+            openIncidentsTabPage.UseVisualStyleBackColor = true;
+            // 
             // logoutLabel
             // 
             logoutLabel.AutoSize = true;
@@ -137,6 +151,14 @@
             username.TabIndex = 2;
             username.Text = "username";
             // 
+            // openIncidents1
+            // 
+            openIncidents1.Dock = DockStyle.Fill;
+            openIncidents1.Location = new Point(0, 0);
+            openIncidents1.Name = "openIncidents1";
+            openIncidents1.Size = new Size(692, 390);
+            openIncidents1.TabIndex = 0;
+            // 
             // MainDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -152,6 +174,7 @@
             addIncident.ResumeLayout(false);
             displayIncident.ResumeLayout(false);
             searchIncident.ResumeLayout(false);
+            openIncidentsTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -167,5 +190,7 @@
         private UserControl.AddIncident addIncident1;
         private UserControls.DisplayIncident displayIncident1;
         private UserControls.SearchIncident searchIncident1;
+        private TabPage openIncidentsTabPage;
+        private UserControls.OpenIncidents openIncidents1;
     }
 }
