@@ -1,5 +1,8 @@
 ﻿namespace TechSupport.Model
 {
+    /// <summary>
+    /// This is the open incidents structure
+    /// </summary>
     public class OpenIncidents
     {
         public string ProductCode { get; set; }

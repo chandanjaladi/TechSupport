@@ -3,8 +3,15 @@ using TechSupport.Model;
 
 namespace TechSupport.UserControl
 {
+    /// <summary>
+    /// Class for add incident
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class AddIncident : System.Windows.Forms.UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddIncident"/> class.
+        /// </summary>
         public AddIncident()
         {
             InitializeComponent();

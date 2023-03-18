@@ -2,16 +2,24 @@
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// This is the class used for open incidents
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class OpenIncidents : System.Windows.Forms.UserControl
     {
         private IncidentController _incidentController;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenIncidents"/> class.
+        /// </summary>
         public OpenIncidents()
         {
             InitializeComponent();
             _incidentController = new IncidentController();
         }
-
+        /// <summary>
+        /// Displays the open incidents.
+        /// </summary>
         public void displayOpenIncidents() 
         {
             openedIncidentsListView.Clear();

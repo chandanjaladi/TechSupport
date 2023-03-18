@@ -25,8 +25,12 @@ namespace TechSupport.DAL
         {
             return s_incidents;
         }
-        
 
+        /// <summary>
+        /// Gets the specific customer incidents.
+        /// </summary>
+        /// <param name="customerID">The customer identifier.</param>
+        /// <returns></returns>
         public List<Incident> getSpecificCustomerIncidents(int customerID)
         {
             return s_incidents.FindAll(e => e.CustomerID == customerID);

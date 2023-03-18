@@ -3,8 +3,15 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
-    internal class IncidentDBDal
+    /// <summary>
+    /// This class is used to get the data from database
+    /// </summary>
+    public class IncidentDBDal
     {
+        /// <summary>
+        /// Gets the open incidents.
+        /// </summary>
+        /// <returns>List of all open incidents</returns>
         public List<OpenIncidents> GetOpenIncidents() 
         {
             var openIncidents = new List<OpenIncidents>();

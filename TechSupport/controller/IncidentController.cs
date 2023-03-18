@@ -60,7 +60,11 @@ namespace TechSupport.Controller
         {
             _incidentDal.Add(incident);
         }
-
+        /// <summary>
+        /// Specifics the customer incidents.
+        /// </summary>
+        /// <param name="customerID">The customer identifier.</param>
+        /// <returns>Incidents of specific customers</returns>
         public List<Incident> specificCustomerIncidents(int customerID) 
         {
             return _incidentDal.getSpecificCustomerIncidents(customerID);

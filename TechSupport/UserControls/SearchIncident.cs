@@ -2,9 +2,16 @@
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// Class for search incident
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class SearchIncident : System.Windows.Forms.UserControl
     {
         private IncidentController _controller;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchIncident"/> class.
+        /// </summary>
         public SearchIncident()
         {
             InitializeComponent();
@@ -39,13 +46,19 @@ namespace TechSupport.UserControls
                 customerIDTextBox.Clear();
             }
         }
-
+        /// <summary>
+        /// Refreshes the incidents.
+        /// </summary>
         public void RefreshIncidents()
         {
             customersIncidentsDataGridView.Visible = true;
             customersIncidentsDataGridView.DataSource = null;
         }
-
+        /// <summary>
+        /// Handles the TextChanged event of the CustomerIDTextBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void CustomerIDTextBox_TextChanged(object sender, EventArgs e)
         {
             errorLabel.Visible = false;

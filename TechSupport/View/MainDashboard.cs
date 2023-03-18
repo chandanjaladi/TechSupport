@@ -2,9 +2,16 @@
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// This class is main dashboard
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainDashboard : Form
     {
         private IncidentController _incidentController;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainDashboard"/> class.
+        /// </summary>
         public MainDashboard()
         {
             InitializeComponent();
