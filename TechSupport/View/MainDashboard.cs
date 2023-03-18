@@ -10,17 +10,38 @@ namespace TechSupport.View
             InitializeComponent();
             _incidentController = new IncidentController();
             username.Text = _incidentController.GetUsername();
+            informationLabel.Text = "Fill the detials and add an incident";
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (tabControl1.SelectedTab == addIncident)
+            {
+                informationLabel.Text = "Fill the detials and add an incident";
+            }
+
             if (tabControl1.SelectedTab == displayIncident)
             {
-                displayIncident1.RefreshIncidents();
+                var condition = displayIncident1.RefreshIncidents();
+                if (!condition)
+                {
+                    informationLabel.Text = "No incidents added to display";
+                }
+                else
+                {
+                    informationLabel.Text = "All incidents are displayed below";
+                }
+
             }
             if (tabControl1.SelectedTab == openIncidentsTabPage)
             {
+                informationLabel.Text = "All incidents linked with database are displayed below";
                 openIncidents1.displayOpenIncidents();
+            }
+            if (tabControl1.SelectedTab == searchIncident)
+            {
+                informationLabel.Text = "Enter customer ID to get their incidents";
             }
         }
 

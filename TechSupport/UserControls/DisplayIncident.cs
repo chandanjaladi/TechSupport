@@ -9,16 +9,23 @@ namespace TechSupport.UserControls
         {
             InitializeComponent();
             _incidentController = new IncidentController();
-            if (_incidentController.GetIncidents().Count != 0)
-            {
-                incidentsDataGridView.DataSource = _incidentController.GetIncidents();
-            }
+            
         }
 
-        public void RefreshIncidents()
+        public bool RefreshIncidents()
         {
-            incidentsDataGridView.DataSource = null;
-            incidentsDataGridView.DataSource = _incidentController.GetIncidents();
+            if (_incidentController.GetIncidents().Count == 0)
+            {
+                incidentsDataGridView.Visible = false;
+                return false;
+            }
+            else
+            {
+                incidentsDataGridView.Visible = true;
+                incidentsDataGridView.DataSource = null;
+                incidentsDataGridView.DataSource = _incidentController.GetIncidents();
+                return true;
+            }
         }
     }
 }

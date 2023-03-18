@@ -10,14 +10,14 @@ namespace TechSupport.View
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class AddIncidentForm : Form
     {
-        private IncidentController controller;
+        private IncidentController _controller;
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
         public AddIncidentForm()
         {
             InitializeComponent();
-            controller = new IncidentController();
+            _controller = new IncidentController();
         }
 
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace TechSupport.View
                     Description = description,
                     CustomerID = customerId
                 };
-                controller.Add(incident);
+                _controller.Add(incident);
                 DialogResult = DialogResult.OK;
             }
 

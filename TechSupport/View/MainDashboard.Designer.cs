@@ -39,6 +39,7 @@
             openIncidents1 = new UserControls.OpenIncidents();
             logoutLabel = new LinkLabel();
             username = new Label();
+            informationLabel = new Label();
             tabControl1.SuspendLayout();
             addIncident.SuspendLayout();
             displayIncident.SuspendLayout();
@@ -160,16 +161,27 @@
             username.TabIndex = 2;
             username.Text = "username";
             // 
+            // informationLabel
+            // 
+            informationLabel.AutoSize = true;
+            informationLabel.Location = new Point(63, 9);
+            informationLabel.Name = "informationLabel";
+            informationLabel.Size = new Size(38, 15);
+            informationLabel.TabIndex = 4;
+            informationLabel.Text = "label1";
+            // 
             // MainDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 456);
+            Controls.Add(informationLabel);
             Controls.Add(logoutLabel);
             Controls.Add(username);
             Controls.Add(tabControl1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
             tabControl1.ResumeLayout(false);
             addIncident.ResumeLayout(false);
@@ -193,5 +205,6 @@
         private UserControls.SearchIncident searchIncident1;
         private TabPage openIncidentsTabPage;
         private UserControls.OpenIncidents openIncidents1;
+        private Label informationLabel;
     }
 }

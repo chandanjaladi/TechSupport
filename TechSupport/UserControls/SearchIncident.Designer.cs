@@ -33,13 +33,14 @@
             searchButton = new Button();
             customerIDTextBox = new TextBox();
             label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)customersIncidentsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // errorLabel
             // 
             errorLabel.AutoSize = true;
-            errorLabel.Location = new Point(146, 64);
+            errorLabel.Location = new Point(146, 72);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(38, 15);
             errorLabel.TabIndex = 9;
@@ -60,7 +61,7 @@
             // 
             // searchButton
             // 
-            searchButton.Location = new Point(332, 25);
+            searchButton.Location = new Point(332, 42);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(75, 23);
             searchButton.TabIndex = 7;
@@ -70,25 +71,36 @@
             // 
             // customerIDTextBox
             // 
-            customerIDTextBox.Location = new Point(146, 26);
+            customerIDTextBox.Location = new Point(146, 43);
             customerIDTextBox.Name = "customerIDTextBox";
             customerIDTextBox.Size = new Size(140, 23);
             customerIDTextBox.TabIndex = 6;
             customerIDTextBox.TextChanged += CustomerIDTextBox_TextChanged;
+            customerIDTextBox.KeyPress += customerIDTextBox_KeyPress;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(64, 28);
+            label1.Location = new Point(64, 46);
             label1.Name = "label1";
             label1.Size = new Size(73, 15);
             label1.TabIndex = 5;
             label1.Text = "CustomerID:";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(75, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(335, 15);
+            label2.TabIndex = 10;
+            label2.Text = "Please enter the customer number (only numbers are allowed)";
+            // 
             // SearchIncident
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label2);
             Controls.Add(errorLabel);
             Controls.Add(customersIncidentsDataGridView);
             Controls.Add(searchButton);
@@ -109,5 +121,6 @@
         private Button searchButton;
         private TextBox customerIDTextBox;
         private Label label1;
+        private Label label2;
     }
 }

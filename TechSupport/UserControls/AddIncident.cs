@@ -8,13 +8,9 @@ namespace TechSupport.UserControl
         public AddIncident()
         {
             InitializeComponent();
-            controller = new IncidentController();
+            _controller = new IncidentController();
         }
-        private IncidentController controller;
-        /// <summary>
-        /// Initializes a new instance of the class.
-        /// </summary>
-
+        private IncidentController _controller;
 
         private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -58,16 +54,14 @@ namespace TechSupport.UserControl
                     Description = description,
                     CustomerID = customerId
                 };
-                controller.Add(incident);
+                _controller.Add(incident);
                 titleTextBox.Clear();
                 descriptionTextBox.Clear();
                 customerIDTextBox.Clear();
                 customerErrorLabel.Visible = true;
                 customerErrorLabel.ForeColor = Color.Green;
                 customerErrorLabel.Text = "Incident added sucessfully!";
-                //DialogResult = DialogResult.OK;
             }
-
             catch (ArgumentException ex)
             {
                 customerErrorLabel.Text = ex.Message;
@@ -82,7 +76,7 @@ namespace TechSupport.UserControl
             }
             catch (Exception)
             {
-
+                
             }
         }
     }
