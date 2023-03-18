@@ -66,11 +66,11 @@ namespace TechSupport.UserControls
 
         private void customerIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            label2.Text = "Please enter the customer number (only numbers are allowed)";
+            label2.Text = "Please enter the customerID (only numbers are allowed)";
             label2.Visible = true;
             label2.ForeColor = Color.Black;
             customersIncidentsDataGridView.Visible = false;
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }

@@ -69,21 +69,29 @@ namespace TechSupport.UserControl
                 customerErrorLabel.ForeColor = Color.Green;
                 customerErrorLabel.Text = "Incident added sucessfully!";
             }
-            catch (ArgumentException ex)
-            {
-                customerErrorLabel.Text = ex.Message;
-                customerErrorLabel.ForeColor = Color.Red;
-                customerErrorLabel.Visible = true;
-            }
             catch (FormatException)
             {
                 customerErrorLabel.Text = "CustomerID is invalid";
                 customerErrorLabel.ForeColor = Color.Red;
                 customerErrorLabel.Visible = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                if (ex.Message == "Title cannot be empty!")
+                {
+                    titleErrorLabel.Visible = true;
+                }
+                else if (ex.Message == "Description cannot be empty!")
+                {
+                    descriptionErrorLabel.Visible = true;
+                }
+                else
+                {
+                    customerErrorLabel.Text = ex.Message;
+                    customerErrorLabel.ForeColor = Color.Red;
+                    customerErrorLabel.Visible = true;
+                }
+
             }
         }
     }
