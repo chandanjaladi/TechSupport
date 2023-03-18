@@ -10,18 +10,6 @@ namespace TechSupport.UserControls
         {
             InitializeComponent();
             _incidentController = new IncidentController();
-            //openedIncidentsListView.View = View.Details;
-            //openedIncidentsListView.Columns.Add("Product Code", 100);
-            //openedIncidentsListView.Columns.Add("Date Opened", 100);
-            //openedIncidentsListView.Columns.Add("Customer", 100);
-            //openedIncidentsListView.Columns.Add("Technicians", 100);
-            //openedIncidentsListView.Columns.Add("Title", 100);
-            
-        }
-
-        private void openedIncidentsListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         public void displayOpenIncidents() 

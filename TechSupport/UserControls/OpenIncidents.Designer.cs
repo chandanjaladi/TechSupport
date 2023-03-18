@@ -43,7 +43,6 @@
             openedIncidentsListView.TabIndex = 0;
             openedIncidentsListView.TileSize = new Size(1, 1);
             openedIncidentsListView.UseCompatibleStateImageBehavior = false;
-            openedIncidentsListView.SelectedIndexChanged += openedIncidentsListView_SelectedIndexChanged;
             // 
             // columnHeader1
             // 
