@@ -14,6 +14,7 @@ namespace TechSupport.DAL
         /// <returns>List of all open incidents</returns>
         public List<OpenIncidents> GetOpenIncidents() 
         {
+
             var openIncidents = new List<OpenIncidents>();
             using var connection = DBConnection.GetConnection();
             connection.Open();
