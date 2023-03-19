@@ -22,8 +22,7 @@ namespace TechSupport.UserControls
         /// </summary>
         public void displayOpenIncidents() 
         {
-            try
-            {
+            
                 openedIncidentsListView.Clear();
                 openedIncidentsListView.View = System.Windows.Forms.View.Details;
                 openedIncidentsListView.Columns.Add("Product Code", 120);
@@ -41,11 +40,8 @@ namespace TechSupport.UserControls
                     lv.SubItems.Add(_incidentController.GetOpenIncidents()[i].Title);
                     openedIncidentsListView.Items.Add(lv);
                 }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Please connect to Database");
-            }
+            
+            
 
         }
     }

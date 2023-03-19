@@ -41,11 +41,20 @@ namespace TechSupport.View
                 }
 
             }
+
             if (tabControl1.SelectedTab == openIncidentsTabPage)
             {
-                informationLabel.Text = "All incidents linked with database are displayed below";
-                openIncidents1.displayOpenIncidents();
+                try
+                {
+                    informationLabel.Text = "All incidents linked with database are displayed below";
+                    openIncidents1.displayOpenIncidents();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Please connect to Database");
+                }
             }
+
             if (tabControl1.SelectedTab == searchIncident)
             {
                 informationLabel.Text = "Enter customer ID to get their incidents";
