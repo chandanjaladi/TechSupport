@@ -33,38 +33,40 @@
             descriptionErrorLabel = new Label();
             titleErrorLabel = new Label();
             addIncidentButton = new Button();
-            customerIDTextBox = new TextBox();
             descriptionTextBox = new TextBox();
             titleTextBox = new TextBox();
-            label4 = new Label();
+            customerLabel = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            customerComboBox = new ComboBox();
+            productLabel = new Label();
+            productComboBox = new ComboBox();
             SuspendLayout();
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(190, 328);
+            cancelButton.Location = new Point(201, 358);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(92, 28);
             cancelButton.TabIndex = 23;
-            cancelButton.Text = "Cancel";
+            cancelButton.Text = "Clear";
             cancelButton.UseVisualStyleBackColor = true;
             // 
             // customerErrorLabel
             // 
             customerErrorLabel.AutoSize = true;
-            customerErrorLabel.Location = new Point(136, 284);
+            customerErrorLabel.Location = new Point(48, 37);
             customerErrorLabel.Name = "customerErrorLabel";
-            customerErrorLabel.Size = new Size(98, 15);
+            customerErrorLabel.Size = new Size(310, 15);
             customerErrorLabel.TabIndex = 22;
-            customerErrorLabel.Text = "CustomerID Error";
+            customerErrorLabel.Text = "Selected Customer is not registered with selected Product";
             customerErrorLabel.Visible = false;
             // 
             // descriptionErrorLabel
             // 
             descriptionErrorLabel.AutoSize = true;
-            descriptionErrorLabel.Location = new Point(136, 230);
+            descriptionErrorLabel.Location = new Point(136, 320);
             descriptionErrorLabel.Name = "descriptionErrorLabel";
             descriptionErrorLabel.Size = new Size(95, 15);
             descriptionErrorLabel.TabIndex = 21;
@@ -74,7 +76,7 @@
             // titleErrorLabel
             // 
             titleErrorLabel.AutoSize = true;
-            titleErrorLabel.Location = new Point(136, 136);
+            titleErrorLabel.Location = new Point(136, 226);
             titleErrorLabel.Name = "titleErrorLabel";
             titleErrorLabel.Size = new Size(57, 15);
             titleErrorLabel.TabIndex = 20;
@@ -83,7 +85,7 @@
             // 
             // addIncidentButton
             // 
-            addIncidentButton.Location = new Point(85, 328);
+            addIncidentButton.Location = new Point(84, 358);
             addIncidentButton.Name = "addIncidentButton";
             addIncidentButton.Size = new Size(92, 28);
             addIncidentButton.TabIndex = 19;
@@ -91,17 +93,9 @@
             addIncidentButton.UseVisualStyleBackColor = true;
             addIncidentButton.Click += AddIncidentButton_Click;
             // 
-            // customerIDTextBox
-            // 
-            customerIDTextBox.Location = new Point(182, 259);
-            customerIDTextBox.Name = "customerIDTextBox";
-            customerIDTextBox.Size = new Size(138, 23);
-            customerIDTextBox.TabIndex = 18;
-            customerIDTextBox.TextChanged += CustomerIDTextBox_TextChanged;
-            // 
             // descriptionTextBox
             // 
-            descriptionTextBox.Location = new Point(182, 158);
+            descriptionTextBox.Location = new Point(182, 248);
             descriptionTextBox.Multiline = true;
             descriptionTextBox.Name = "descriptionTextBox";
             descriptionTextBox.Size = new Size(138, 68);
@@ -110,25 +104,25 @@
             // 
             // titleTextBox
             // 
-            titleTextBox.Location = new Point(182, 110);
+            titleTextBox.Location = new Point(182, 200);
             titleTextBox.Name = "titleTextBox";
             titleTextBox.Size = new Size(138, 23);
             titleTextBox.TabIndex = 16;
             titleTextBox.TextChanged += titleTextBox_TextChanged;
             // 
-            // label4
+            // customerLabel
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(87, 262);
-            label4.Name = "label4";
-            label4.Size = new Size(73, 15);
-            label4.TabIndex = 15;
-            label4.Text = "CustomerID:";
+            customerLabel.AutoSize = true;
+            customerLabel.Location = new Point(87, 114);
+            customerLabel.Name = "customerLabel";
+            customerLabel.Size = new Size(62, 15);
+            customerLabel.TabIndex = 15;
+            customerLabel.Text = "Customer:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(87, 161);
+            label3.Location = new Point(87, 251);
             label3.Name = "label3";
             label3.Size = new Size(70, 15);
             label3.TabIndex = 14;
@@ -137,7 +131,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(87, 112);
+            label2.Location = new Point(87, 202);
             label2.Name = "label2";
             label2.Size = new Size(32, 15);
             label2.TabIndex = 13;
@@ -153,24 +147,53 @@
             label1.TabIndex = 12;
             label1.Text = "Add Incident Detials";
             // 
-            // AddIncident
+            // customerComboBox
+            // 
+            customerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            customerComboBox.FormattingEnabled = true;
+            customerComboBox.Location = new Point(182, 111);
+            customerComboBox.Name = "customerComboBox";
+            customerComboBox.Size = new Size(138, 23);
+            customerComboBox.TabIndex = 24;
+            // 
+            // productLabel
+            // 
+            productLabel.AutoSize = true;
+            productLabel.Location = new Point(87, 158);
+            productLabel.Name = "productLabel";
+            productLabel.Size = new Size(52, 15);
+            productLabel.TabIndex = 25;
+            productLabel.Text = "Product:";
+            // 
+            // productComboBox
+            // 
+            productComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            productComboBox.FormattingEnabled = true;
+            productComboBox.Location = new Point(182, 155);
+            productComboBox.Name = "productComboBox";
+            productComboBox.Size = new Size(138, 23);
+            productComboBox.TabIndex = 26;
+            // 
+            // AddIncidentUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(productComboBox);
+            Controls.Add(productLabel);
+            Controls.Add(customerComboBox);
             Controls.Add(cancelButton);
             Controls.Add(customerErrorLabel);
             Controls.Add(descriptionErrorLabel);
             Controls.Add(titleErrorLabel);
             Controls.Add(addIncidentButton);
-            Controls.Add(customerIDTextBox);
             Controls.Add(descriptionTextBox);
             Controls.Add(titleTextBox);
-            Controls.Add(label4);
+            Controls.Add(customerLabel);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "AddIncident";
+            Name = "AddIncidentUserControl";
             Size = new Size(404, 417);
             Click += AddIncidentButton_Click;
             ResumeLayout(false);
@@ -187,9 +210,12 @@
         private TextBox customerIDTextBox;
         private TextBox descriptionTextBox;
         private TextBox titleTextBox;
-        private Label label4;
+        private Label customerLabel;
         private Label label3;
         private Label label2;
         private Label label1;
+        private ComboBox customerComboBox;
+        private Label productLabel;
+        private ComboBox productComboBox;
     }
 }

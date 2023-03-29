@@ -18,12 +18,12 @@ namespace TechSupport.UserControl
             InitializeComponent();
             _controller = new IncidentController();
         }
-        
+
 
         private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
             titleErrorLabel.Visible = false;
-            
+
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
