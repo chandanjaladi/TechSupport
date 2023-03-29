@@ -30,7 +30,7 @@
 
             set
             {
-                if (value == null || value == "")
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException(paramName: "", message: "Title cannot be empty!");
                 }
@@ -50,7 +50,7 @@
 
             set
             {
-                if (value == null || value == "")
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new Exception("Description cannot be empty!");
                 }

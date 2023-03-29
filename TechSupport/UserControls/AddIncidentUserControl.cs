@@ -9,6 +9,7 @@ namespace TechSupport.UserControl
     /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class AddIncidentUserControl : System.Windows.Forms.UserControl
     {
+        private IncidentController _controller;
         /// <summary>
         /// Initializes a new instance of the <see cref="AddIncidentUserControl"/> class.
         /// </summary>
@@ -17,12 +18,12 @@ namespace TechSupport.UserControl
             InitializeComponent();
             _controller = new IncidentController();
         }
-        private IncidentController _controller;
+        
 
         private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
             titleErrorLabel.Visible = false;
-            customerErrorLabel.Visible = false;
+            
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
@@ -39,14 +40,14 @@ namespace TechSupport.UserControl
         {
             string title = titleTextBox.Text;
             string description = descriptionTextBox.Text;
-            if (title.Equals("") || title == null)
+            if (string.IsNullOrEmpty(title))
             {
                 titleErrorLabel.Text = "Title cannot be empty!";
                 titleErrorLabel.ForeColor = Color.Red;
                 titleErrorLabel.Visible = true;
             }
 
-            if (description.Equals("") || description == null)
+            if (string.IsNullOrEmpty(description))
             {
                 descriptionErrorLabel.Text = "Description cannot be empty!";
                 descriptionErrorLabel.ForeColor = Color.Red;
@@ -62,9 +63,7 @@ namespace TechSupport.UserControl
                     CustomerID = customerId
                 };
                 _controller.Add(incident);
-                titleTextBox.Clear();
-                descriptionTextBox.Clear();
-                customerIDTextBox.Clear();
+                ClearFields();
                 customerErrorLabel.Visible = true;
                 customerErrorLabel.ForeColor = Color.Green;
                 customerErrorLabel.Text = "Incident added sucessfully!";
@@ -93,6 +92,13 @@ namespace TechSupport.UserControl
                 }
 
             }
+        }
+
+        private void ClearFields()
+        {
+            titleTextBox.Clear();
+            descriptionTextBox.Clear();
+            customerIDTextBox.Clear();
         }
     }
 }
