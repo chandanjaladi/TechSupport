@@ -37,21 +37,17 @@ namespace TechSupport.DAL
                 var customersName = "";
                 var technicians = "";
                 var title = "";
+                productCode = reader.GetString(productCodeOrdinal);
+                dateOpened = reader.GetDateTime(dateOpenedOrdinal);
+                customersName = reader.GetString(customersNameOrdinal);
+                title = reader.GetString(titleOrdinal);
                 if (reader.IsDBNull(techniciansNameOrdinal))
                 {
-                    productCode = reader.GetString(productCodeOrdinal);
-                    dateOpened = reader.GetDateTime(dateOpenedOrdinal);
-                    customersName = reader.GetString(customersNameOrdinal);
                     technicians = "Not Assigned";
-                    title = reader.GetString(titleOrdinal);
                 }
                 else 
                 {
-                    productCode = reader.GetString(productCodeOrdinal);
-                    dateOpened = reader.GetDateTime(dateOpenedOrdinal);
-                    customersName = reader.GetString(customersNameOrdinal);
                     technicians = reader.GetString(techniciansNameOrdinal);
-                    title = reader.GetString(titleOrdinal);
                 }
 
                 openIncidents.Add(new OpenIncidents
