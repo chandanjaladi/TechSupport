@@ -1,28 +1,28 @@
 ﻿using TechSupport.Controller;
 using TechSupport.Model;
 
-namespace TechSupport.View
+namespace TechSupport.UserControl
 {
-
     /// <summary>
-    /// This class is used to add incidents
+    /// Class for add incident
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
-    public partial class AddIncidentForm : Form
+    /// <seealso cref="System.Windows.Forms.UserControl" />
+    public partial class AddIncidentUserControl : System.Windows.Forms.UserControl
     {
-        private IncidentController _controller;
         /// <summary>
-        /// Initializes a new instance of the class.
+        /// Initializes a new instance of the <see cref="AddIncidentUserControl"/> class.
         /// </summary>
-        public AddIncidentForm()
+        public AddIncidentUserControl()
         {
             InitializeComponent();
             _controller = new IncidentController();
         }
+        private IncidentController _controller;
 
-        private void TitleTextBox_TextChanged(object sender, EventArgs e)
+        private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
             titleErrorLabel.Visible = false;
+            customerErrorLabel.Visible = false;
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
@@ -39,16 +39,16 @@ namespace TechSupport.View
         {
             string title = titleTextBox.Text;
             string description = descriptionTextBox.Text;
-            if (title.Equals(""))
+            if (title.Equals("") || title == null)
             {
                 titleErrorLabel.Text = "Title cannot be empty!";
                 titleErrorLabel.ForeColor = Color.Red;
                 titleErrorLabel.Visible = true;
             }
 
-            if (description.Equals(""))
+            if (description.Equals("") || description == null)
             {
-                descriptionErrorLabel.Text = "Description cannot be empty";
+                descriptionErrorLabel.Text = "Description cannot be empty!";
                 descriptionErrorLabel.ForeColor = Color.Red;
                 descriptionErrorLabel.Visible = true;
             }
@@ -62,14 +62,12 @@ namespace TechSupport.View
                     CustomerID = customerId
                 };
                 _controller.Add(incident);
-                DialogResult = DialogResult.OK;
-            }
-
-            catch (ArgumentException ex)
-            {
-                customerErrorLabel.Text = ex.Message;
-                customerErrorLabel.ForeColor = Color.Red;
+                titleTextBox.Clear();
+                descriptionTextBox.Clear();
+                customerIDTextBox.Clear();
                 customerErrorLabel.Visible = true;
+                customerErrorLabel.ForeColor = Color.Green;
+                customerErrorLabel.Text = "Incident added sucessfully!";
             }
             catch (FormatException)
             {
@@ -77,8 +75,22 @@ namespace TechSupport.View
                 customerErrorLabel.ForeColor = Color.Red;
                 customerErrorLabel.Visible = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                if (ex.Message == "Title cannot be empty!")
+                {
+                    titleErrorLabel.Visible = true;
+                }
+                else if (ex.Message == "Description cannot be empty!")
+                {
+                    descriptionErrorLabel.Visible = true;
+                }
+                else
+                {
+                    customerErrorLabel.Text = ex.Message;
+                    customerErrorLabel.ForeColor = Color.Red;
+                    customerErrorLabel.Visible = true;
+                }
 
             }
         }

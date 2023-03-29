@@ -1,6 +1,6 @@
 ﻿namespace TechSupport.UserControls
 {
-    partial class DisplayIncident
+    partial class DisplayIncidentUserControl
     {
         /// <summary> 
         /// Required designer variable.

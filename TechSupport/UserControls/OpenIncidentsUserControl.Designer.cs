@@ -1,6 +1,6 @@
 ﻿namespace TechSupport.UserControls
 {
-    partial class OpenIncidents
+    partial class OpenIncidentsUserControl
     {
         /// <summary> 
         /// Required designer variable.

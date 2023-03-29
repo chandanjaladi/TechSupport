@@ -30,13 +30,13 @@
         {
             tabControl1 = new TabControl();
             addIncident = new TabPage();
-            addIncident1 = new UserControl.AddIncident();
+            addIncident1 = new UserControl.AddIncidentUserControl();
             displayIncident = new TabPage();
-            displayIncident1 = new UserControls.DisplayIncident();
+            displayIncident1 = new UserControls.DisplayIncidentUserControl();
             searchIncident = new TabPage();
-            searchIncident1 = new UserControls.SearchIncident();
+            searchIncident1 = new UserControls.SearchIncidentUserControl();
             openIncidentsTabPage = new TabPage();
-            openIncidents1 = new UserControls.OpenIncidents();
+            openIncidents1 = new UserControls.OpenIncidentsUserControl();
             logoutLabel = new LinkLabel();
             username = new Label();
             informationLabel = new Label();
@@ -200,11 +200,11 @@
         private TabPage searchIncident;
         private LinkLabel logoutLabel;
         private Label username;
-        private UserControl.AddIncident addIncident1;
-        private UserControls.DisplayIncident displayIncident1;
-        private UserControls.SearchIncident searchIncident1;
+        private UserControl.AddIncidentUserControl addIncident1;
+        private UserControls.DisplayIncidentUserControl displayIncident1;
+        private UserControls.SearchIncidentUserControl searchIncident1;
         private TabPage openIncidentsTabPage;
-        private UserControls.OpenIncidents openIncidents1;
+        private UserControls.OpenIncidentsUserControl openIncidents1;
         private Label informationLabel;
     }
 }

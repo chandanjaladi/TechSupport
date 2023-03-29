@@ -6,13 +6,13 @@ namespace TechSupport.UserControls
     /// This is the class for display incidents
     /// </summary>
     /// <seealso cref="System.Windows.Forms.UserControl" />
-    public partial class DisplayIncident : System.Windows.Forms.UserControl
+    public partial class DisplayIncidentUserControl : System.Windows.Forms.UserControl
     {
         private IncidentController _incidentController;
         /// <summary>
-        /// Initializes a new instance of the <see cref="DisplayIncident"/> class.
+        /// Initializes a new instance of the <see cref="DisplayIncidentUserControl"/> class.
         /// </summary>
-        public DisplayIncident()
+        public DisplayIncidentUserControl()
         {
             InitializeComponent();
             _incidentController = new IncidentController();

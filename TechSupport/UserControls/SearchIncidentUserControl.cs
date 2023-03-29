@@ -6,13 +6,13 @@ namespace TechSupport.UserControls
     /// Class for search incident
     /// </summary>
     /// <seealso cref="System.Windows.Forms.UserControl" />
-    public partial class SearchIncident : System.Windows.Forms.UserControl
+    public partial class SearchIncidentUserControl : System.Windows.Forms.UserControl
     {
         private IncidentController _controller;
         /// <summary>
-        /// Initializes a new instance of the <see cref="SearchIncident"/> class.
+        /// Initializes a new instance of the <see cref="SearchIncidentUserControl"/> class.
         /// </summary>
-        public SearchIncident()
+        public SearchIncidentUserControl()
         {
             InitializeComponent();
             _controller = new IncidentController();
