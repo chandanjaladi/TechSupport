@@ -31,10 +31,6 @@
             tabControl1 = new TabControl();
             addIncident = new TabPage();
             addIncident1 = new UserControl.AddIncidentUserControl();
-            displayIncident = new TabPage();
-            displayIncident1 = new UserControls.DisplayIncidentUserControl();
-            searchIncident = new TabPage();
-            searchIncident1 = new UserControls.SearchIncidentUserControl();
             openIncidentsTabPage = new TabPage();
             openIncidents1 = new UserControls.OpenIncidentsUserControl();
             logoutLabel = new LinkLabel();
@@ -42,16 +38,12 @@
             informationLabel = new Label();
             tabControl1.SuspendLayout();
             addIncident.SuspendLayout();
-            displayIncident.SuspendLayout();
-            searchIncident.SuspendLayout();
             openIncidentsTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(addIncident);
-            tabControl1.Controls.Add(displayIncident);
-            tabControl1.Controls.Add(searchIncident);
             tabControl1.Controls.Add(openIncidentsTabPage);
             tabControl1.Dock = DockStyle.Bottom;
             tabControl1.Location = new Point(0, 38);
@@ -81,47 +73,6 @@
             addIncident1.Name = "addIncident1";
             addIncident1.Size = new Size(506, 419);
             addIncident1.TabIndex = 0;
-            // 
-            // displayIncident
-            // 
-            displayIncident.Controls.Add(displayIncident1);
-            displayIncident.Location = new Point(4, 24);
-            displayIncident.Margin = new Padding(3, 2, 3, 2);
-            displayIncident.Name = "displayIncident";
-            displayIncident.Padding = new Padding(3, 2, 3, 2);
-            displayIncident.Size = new Size(692, 390);
-            displayIncident.TabIndex = 1;
-            displayIncident.Text = "Display Incident";
-            displayIncident.UseVisualStyleBackColor = true;
-            // 
-            // displayIncident1
-            // 
-            displayIncident1.Dock = DockStyle.Fill;
-            displayIncident1.Location = new Point(3, 2);
-            displayIncident1.Margin = new Padding(3, 2, 3, 2);
-            displayIncident1.Name = "displayIncident1";
-            displayIncident1.Size = new Size(686, 386);
-            displayIncident1.TabIndex = 0;
-            // 
-            // searchIncident
-            // 
-            searchIncident.Controls.Add(searchIncident1);
-            searchIncident.Location = new Point(4, 24);
-            searchIncident.Margin = new Padding(3, 2, 3, 2);
-            searchIncident.Name = "searchIncident";
-            searchIncident.Size = new Size(692, 390);
-            searchIncident.TabIndex = 2;
-            searchIncident.Text = "Search Incident";
-            searchIncident.UseVisualStyleBackColor = true;
-            // 
-            // searchIncident1
-            // 
-            searchIncident1.Dock = DockStyle.Fill;
-            searchIncident1.Location = new Point(0, 0);
-            searchIncident1.Margin = new Padding(3, 2, 3, 2);
-            searchIncident1.Name = "searchIncident1";
-            searchIncident1.Size = new Size(692, 390);
-            searchIncident1.TabIndex = 0;
             // 
             // openIncidentsTabPage
             // 
@@ -185,8 +136,6 @@
             Text = "Dashboard";
             tabControl1.ResumeLayout(false);
             addIncident.ResumeLayout(false);
-            displayIncident.ResumeLayout(false);
-            searchIncident.ResumeLayout(false);
             openIncidentsTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -196,13 +145,9 @@
 
         private TabControl tabControl1;
         private TabPage addIncident;
-        private TabPage displayIncident;
-        private TabPage searchIncident;
         private LinkLabel logoutLabel;
         private Label username;
         private UserControl.AddIncidentUserControl addIncident1;
-        private UserControls.DisplayIncidentUserControl displayIncident1;
-        private UserControls.SearchIncidentUserControl searchIncident1;
         private TabPage openIncidentsTabPage;
         private UserControls.OpenIncidentsUserControl openIncidents1;
         private Label informationLabel;

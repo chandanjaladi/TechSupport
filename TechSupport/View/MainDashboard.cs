@@ -28,20 +28,6 @@ namespace TechSupport.View
                 informationLabel.Text = "Fill the detials and add an incident";
             }
 
-            if (tabControl1.SelectedTab == displayIncident)
-            {
-                var condition = displayIncident1.RefreshIncidents();
-                if (!condition)
-                {
-                    informationLabel.Text = "No incidents added to display";
-                }
-                else
-                {
-                    informationLabel.Text = "All incidents are displayed below";
-                }
-
-            }
-
             if (tabControl1.SelectedTab == openIncidentsTabPage)
             {
                 try
@@ -53,11 +39,6 @@ namespace TechSupport.View
                 {
                     MessageBox.Show("Please connect to Database");
                 }
-            }
-
-            if (tabControl1.SelectedTab == searchIncident)
-            {
-                informationLabel.Text = "Enter customer ID to get their incidents";
             }
         }
 
