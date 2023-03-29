@@ -196,7 +196,6 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "AddIncidentUserControl";
             Size = new Size(404, 417);
-            Click += AddIncidentButton_Click;
             ResumeLayout(false);
             PerformLayout();
         }

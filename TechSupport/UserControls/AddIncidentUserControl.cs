@@ -35,12 +35,14 @@ namespace TechSupport.UserControl
         private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
             titleErrorLabel.Visible = false;
+            customerErrorLabel.Visible = false;
 
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             descriptionErrorLabel.Visible = false;
+            customerErrorLabel.Visible = false;
         }
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
