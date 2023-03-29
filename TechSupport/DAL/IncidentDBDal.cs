@@ -18,7 +18,11 @@ namespace TechSupport.DAL
             var openIncidents = new List<OpenIncidents>();
             using var connection = DBConnection.GetConnection();
             connection.Open();
-            const string query = "select Incidents.ProductCode,Incidents.DateOpened,Customers.Name as customerName,Technicians.Name,Incidents.Title from Incidents,Technicians,Customers where Incidents.CustomerID = Customers.CustomerID and Incidents.TechID = Technicians.TechID and Incidents.DateClosed is null";
+            const string query = "select Incidents.ProductCode, Incidents.DateOpened, Customers.Name as customerName, Technicians.Name, Incidents.Title "
+                + "from Customers, Incidents "
+                + "left join Technicians " 
+                + "on Technicians.TechID = Incidents.TechID "
+                + "where Incidents.CustomerID = Customers.CustomerID and Incidents.DateClosed is null";
             using var command = new SqlCommand(query,connection);
             using var reader = command.ExecuteReader();
             var productCodeOrdinal = reader.GetOrdinal("ProductCode");
@@ -28,11 +32,27 @@ namespace TechSupport.DAL
             var titleOrdinal = reader.GetOrdinal("Title");
             while (reader.Read())
             {
-                var productCode = reader.GetString(productCodeOrdinal);
-                var dateOpened = reader.GetDateTime(dateOpenedOrdinal);
-                var customersName = reader.GetString(customersNameOrdinal);
-                var technicians = reader.GetString(techniciansNameOrdinal);
-                var title = reader.GetString(titleOrdinal);
+                var productCode = "";
+                var dateOpened = new DateTime();
+                var customersName = "";
+                var technicians = "";
+                var title = "";
+                if (reader.IsDBNull(techniciansNameOrdinal))
+                {
+                    productCode = reader.GetString(productCodeOrdinal);
+                    dateOpened = reader.GetDateTime(dateOpenedOrdinal);
+                    customersName = reader.GetString(customersNameOrdinal);
+                    technicians = "Not Assigned";
+                    title = reader.GetString(titleOrdinal);
+                }
+                else 
+                {
+                    productCode = reader.GetString(productCodeOrdinal);
+                    dateOpened = reader.GetDateTime(dateOpenedOrdinal);
+                    customersName = reader.GetString(customersNameOrdinal);
+                    technicians = reader.GetString(techniciansNameOrdinal);
+                    title = reader.GetString(titleOrdinal);
+                }
 
                 openIncidents.Add(new OpenIncidents
                 {
