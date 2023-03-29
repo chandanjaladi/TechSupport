@@ -7,7 +7,6 @@
     {
         private string _title;
         private string _description;
-        private int _customerID;
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>

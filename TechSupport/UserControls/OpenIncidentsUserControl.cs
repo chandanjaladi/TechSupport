@@ -36,7 +36,7 @@ namespace TechSupport.UserControls
                     var lv = new ListViewItem(_incidentController.GetOpenIncidents()[i].ProductCode);
                     lv.SubItems.Add(_incidentController.GetOpenIncidents()[i].DateOpened.ToShortDateString());
                     lv.SubItems.Add(_incidentController.GetOpenIncidents()[i].CustomerName);
-                    lv.SubItems.Add(_incidentController.GetOpenIncidents()[i].TechinicianName);
+                    lv.SubItems.Add(_incidentController.GetOpenIncidents()[i].TechnicianName);
                     lv.SubItems.Add(_incidentController.GetOpenIncidents()[i].Title);
                     openedIncidentsListView.Items.Add(lv);
                 }

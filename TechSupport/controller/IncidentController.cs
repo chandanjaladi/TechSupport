@@ -31,6 +31,10 @@ namespace TechSupport.Controller
             return _username;
         }
 
+        /// <summary>
+        /// Gets the open incidents.
+        /// </summary>
+        /// <returns></returns>
         public List<OpenIncidents> GetOpenIncidents() 
         {
             return _incidentDBDAL.GetOpenIncidents();
@@ -61,21 +65,42 @@ namespace TechSupport.Controller
             _incidentDal.Add(incident);
         }
 
+        /// <summary>
+        /// Gets the customer names.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetCustomerNames()
         {
             return _incidentDBDAL.GetCustomerNames();
         }
 
+        /// <summary>
+        /// Gets the product names.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetProductNames()
         {
             return _incidentDBDAL.GetProductNames();
         }
 
+        /// <summary>
+        /// Checks if the customer and product is registered or not.
+        /// </summary>
+        /// <param name="customerName">Name of the customer.</param>
+        /// <param name="productName">Name of the product.</param>
+        /// <returns></returns>
         public bool CheckRegisteredOrNot(string customerName, string productName)
         {
             return _incidentDBDAL.CheckRegisteredProductOrNot(customerName,productName);
         }
 
+        /// <summary>
+        /// Adds the incident.
+        /// </summary>
+        /// <param name="customerName">Name of the customer.</param>
+        /// <param name="productName">Name of the product.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="description">The description.</param>
         public void AddIncident(string customerName, string productName, string title, string description)
         {
             _incidentDBDAL.AddIncident(customerName,productName,title,description);

@@ -207,7 +207,6 @@
         private Label descriptionErrorLabel;
         private Label titleErrorLabel;
         private Button addIncidentButton;
-        private TextBox customerIDTextBox;
         private TextBox descriptionTextBox;
         private TextBox titleTextBox;
         private Label customerLabel;

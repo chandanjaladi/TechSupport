@@ -1,5 +1,4 @@
 ﻿using TechSupport.Controller;
-using TechSupport.Model;
 
 namespace TechSupport.UserControl
 {

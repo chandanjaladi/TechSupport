@@ -55,13 +55,17 @@ namespace TechSupport.DAL
                     ProductCode = productCode,
                     DateOpened = dateOpened,
                     CustomerName = customersName,
-                    TechinicianName = technicians,
+                    TechnicianName = technicians,
                     Title = title
                 });
             }
             return openIncidents;
         }
 
+        /// <summary>
+        /// Gets the customer names.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetCustomerNames()
         {
             var customers = new List<String>();
@@ -79,6 +83,10 @@ namespace TechSupport.DAL
             return customers;
         }
 
+        /// <summary>
+        /// Gets the product names.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetProductNames()
         {
             var products = new List<String>();
@@ -96,6 +104,12 @@ namespace TechSupport.DAL
             return products;
         }
 
+        /// <summary>
+        /// Checks if the customers and products are registered or not.
+        /// </summary>
+        /// <param name="customerName">Name of the customer.</param>
+        /// <param name="productName">Name of the product.</param>
+        /// <returns></returns>
         public bool CheckRegisteredProductOrNot(string customerName, string productName)
         {
             using var connection = DBConnection.GetConnection();
@@ -111,6 +125,13 @@ namespace TechSupport.DAL
             return count == 1;
         }
 
+        /// <summary>
+        /// Adds the incident.
+        /// </summary>
+        /// <param name="customerName">Name of the customer.</param>
+        /// <param name="productName">Name of the product.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="description">The description.</param>
         public void AddIncident(string customerName, string productName, string title, string description)
         {
             using var connection1 = DBConnection.GetConnection();
