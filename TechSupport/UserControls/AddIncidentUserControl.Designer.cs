@@ -52,6 +52,7 @@
             cancelButton.TabIndex = 23;
             cancelButton.Text = "Clear";
             cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
             // 
             // customerErrorLabel
             // 

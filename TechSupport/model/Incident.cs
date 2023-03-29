@@ -57,25 +57,5 @@
                 _description = value;
             }
         }
-        /// <summary>
-        /// Gets or sets the customer identifier.
-        /// </summary>
-        /// <value>
-        /// The customer identifier.
-        /// </value>
-        /// <exception cref="System.ArgumentException">CustomerID cannot be less than 0!</exception>
-        public int CustomerID
-        {
-            get => _customerID;
-
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("CustomerID cannot be less than 0!");
-                }
-                _customerID = value;
-            }
-        }
     }
 }

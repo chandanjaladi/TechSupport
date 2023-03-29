@@ -17,6 +17,18 @@ namespace TechSupport.UserControl
         {
             InitializeComponent();
             _controller = new IncidentController();
+
+            foreach (string customerName in _controller.GetCustomerNames())
+            {
+                customerComboBox.Items.Add(customerName);
+            }
+            foreach (string productName in _controller.GetProductNames())
+            {
+                productComboBox.Items.Add(productName);
+            }
+            customerComboBox.SelectedIndex = 0;
+            productComboBox.SelectedIndex = 0;
+
         }
 
 
@@ -31,65 +43,62 @@ namespace TechSupport.UserControl
             descriptionErrorLabel.Visible = false;
         }
 
-        private void CustomerIDTextBox_TextChanged(object sender, EventArgs e)
-        {
-            customerErrorLabel.Visible = false;
-        }
-
         private void AddIncidentButton_Click(object sender, EventArgs e)
         {
-            string title = titleTextBox.Text;
-            string description = descriptionTextBox.Text;
-            if (string.IsNullOrEmpty(title))
-            {
-                titleErrorLabel.Text = "Title cannot be empty!";
-                titleErrorLabel.ForeColor = Color.Red;
-                titleErrorLabel.Visible = true;
-            }
-
-            if (string.IsNullOrEmpty(description))
-            {
-                descriptionErrorLabel.Text = "Description cannot be empty!";
-                descriptionErrorLabel.ForeColor = Color.Red;
-                descriptionErrorLabel.Visible = true;
-            }
             try
             {
-                int customerId = Convert.ToInt32(customerIDTextBox.Text);
-                var incident = new Incident
+
+                string title = titleTextBox.Text;
+                string description = descriptionTextBox.Text;
+
+                if (string.IsNullOrEmpty(title) && string.IsNullOrEmpty(description))
                 {
-                    Title = title,
-                    Description = description,
-                    CustomerID = customerId
-                };
-                _controller.Add(incident);
-                ClearFields();
-                customerErrorLabel.Visible = true;
-                customerErrorLabel.ForeColor = Color.Green;
-                customerErrorLabel.Text = "Incident added sucessfully!";
-            }
-            catch (FormatException)
-            {
-                customerErrorLabel.Text = "CustomerID is invalid";
-                customerErrorLabel.ForeColor = Color.Red;
-                customerErrorLabel.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message == "Title cannot be empty!")
-                {
+                    titleErrorLabel.Text = "Title cannot be empty!";
+                    titleErrorLabel.ForeColor = Color.Red;
                     titleErrorLabel.Visible = true;
-                }
-                else if (ex.Message == "Description cannot be empty!")
-                {
+                    descriptionErrorLabel.Text = "Description cannot be empty!";
+                    descriptionErrorLabel.ForeColor = Color.Red;
                     descriptionErrorLabel.Visible = true;
+                    throw new ArgumentException("Title and Description is empty");
+                }
+
+                if (string.IsNullOrEmpty(title))
+                {
+                    titleErrorLabel.Text = "Title cannot be empty!";
+                    titleErrorLabel.ForeColor = Color.Red;
+                    titleErrorLabel.Visible = true;
+                    throw new ArgumentException("Title is empty");
+
+                }
+
+                if (string.IsNullOrEmpty(description))
+                {
+                    descriptionErrorLabel.Text = "Description cannot be empty!";
+                    descriptionErrorLabel.ForeColor = Color.Red;
+                    descriptionErrorLabel.Visible = true;
+                    throw new ArgumentException("Description is empty");
+                }
+
+                var customerName = customerComboBox.SelectedItem.ToString();
+                var productName = productComboBox.SelectedItem.ToString();
+
+                if (_controller.CheckRegisteredOrNot(customerName, productName))
+                {
+                    _controller.AddIncident(customerName, productName, title, description);
+                    ClearFields();
+                    customerErrorLabel.Visible = true;
+                    customerErrorLabel.ForeColor = Color.Green;
+                    customerErrorLabel.Text = "Incident added sucessfully!";
                 }
                 else
                 {
-                    customerErrorLabel.Text = ex.Message;
-                    customerErrorLabel.ForeColor = Color.Red;
                     customerErrorLabel.Visible = true;
+                    customerErrorLabel.ForeColor = Color.Red;
+                    customerErrorLabel.Text = "Selected Customer is not registered with selected Product";
                 }
+            }
+            catch (Exception)
+            {
 
             }
         }
@@ -98,7 +107,13 @@ namespace TechSupport.UserControl
         {
             titleTextBox.Clear();
             descriptionTextBox.Clear();
-            customerIDTextBox.Clear();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+            customerComboBox.SelectedIndex = 0;
+            productComboBox.SelectedIndex = 0;
         }
     }
 }

@@ -60,14 +60,25 @@ namespace TechSupport.Controller
         {
             _incidentDal.Add(incident);
         }
-        /// <summary>
-        /// Specifics the customer incidents.
-        /// </summary>
-        /// <param name="customerID">The customer identifier.</param>
-        /// <returns>Incidents of specific customers</returns>
-        public List<Incident> specificCustomerIncidents(int customerID) 
+
+        public List<string> GetCustomerNames()
         {
-            return _incidentDal.getSpecificCustomerIncidents(customerID);
+            return _incidentDBDAL.GetCustomerNames();
+        }
+
+        public List<string> GetProductNames()
+        {
+            return _incidentDBDAL.GetProductNames();
+        }
+
+        public bool CheckRegisteredOrNot(string customerName, string productName)
+        {
+            return _incidentDBDAL.CheckRegisteredProductOrNot(customerName,productName);
+        }
+
+        public void AddIncident(string customerName, string productName, string title, string description)
+        {
+            _incidentDBDAL.AddIncident(customerName,productName,title,description);
         }
     }
 }

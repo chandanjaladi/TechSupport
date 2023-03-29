@@ -67,7 +67,6 @@
             searchButton.TabIndex = 7;
             searchButton.Text = "Search";
             searchButton.UseVisualStyleBackColor = true;
-            searchButton.Click += SearchButton_Click;
             // 
             // customerIDTextBox
             // 
@@ -75,8 +74,6 @@
             customerIDTextBox.Name = "customerIDTextBox";
             customerIDTextBox.Size = new Size(140, 23);
             customerIDTextBox.TabIndex = 6;
-            customerIDTextBox.TextChanged += CustomerIDTextBox_TextChanged;
-            customerIDTextBox.KeyPress += customerIDTextBox_KeyPress;
             // 
             // label1
             // 
