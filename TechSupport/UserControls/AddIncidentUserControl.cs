@@ -17,18 +17,8 @@ namespace TechSupport.UserControl
         {
             InitializeComponent();
             _controller = new IncidentController();
-
-            foreach (string customerName in _controller.GetCustomerNames())
-            {
-                customerComboBox.Items.Add(customerName);
-            }
-            foreach (string productName in _controller.GetProductNames())
-            {
-                productComboBox.Items.Add(productName);
-            }
-            customerComboBox.SelectedIndex = 0;
-            productComboBox.SelectedIndex = 0;
-
+            customerComboBox.DataSource = _controller.GetCustomerNames();
+            productComboBox.DataSource = _controller.GetProductNames();
         }
 
 
