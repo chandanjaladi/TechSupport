@@ -7,13 +7,18 @@
     {
         private string _title;
         private string _description;
+        private int _customerID;
+        private string _productCode;
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
         public Incident()
         {
+            _customerID = 0;
+            _productCode = "";
             _title = "";
             _description = "";
+            
         }
 
 
@@ -33,7 +38,7 @@
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException(paramName: "", message: "Title cannot be empty!");
+                    throw new Exception("Title cannot be empty!");
                 }
                 _title = value;
             }
@@ -58,5 +63,26 @@
                 _description = value;
             }
         }
+
+        public int CustomerID
+        {
+            get => _customerID;
+
+            set
+            {
+                _customerID = value;
+            }
+        }
+
+        public string ProductCode
+        {
+            get => _productCode;
+
+            set
+            {
+                _productCode = value;
+            }
+        }
+        
     }
 }

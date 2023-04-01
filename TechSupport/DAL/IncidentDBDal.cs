@@ -110,17 +110,17 @@ namespace TechSupport.DAL
         /// <param name="customerName">Name of the customer.</param>
         /// <param name="productName">Name of the product.</param>
         /// <returns></returns>
-        public bool CheckRegisteredProductOrNot(string customerName, string productName)
+        public bool CheckRegisteredProductOrNot(int customerID, string productCode)
         {
             using var connection = DBConnection.GetConnection();
             connection.Open();
             const string query = "select count(*) from registrations" + 
-                " where CustomerID = (select CustomerID from customers where Name = @customerName) and ProductCode = (select ProductCode from products where Name = @productName)";
+                " where CustomerID = @customerID and ProductCode = @productCode";
             using var command = new SqlCommand(query, connection);
-            command.Parameters.Add("@customerName", System.Data.SqlDbType.VarChar);
-            command.Parameters["@customerName"].Value = customerName;
-            command.Parameters.Add("@productName", System.Data.SqlDbType.VarChar);
-            command.Parameters["@productName"].Value = productName;
+            command.Parameters.Add("@customerID", System.Data.SqlDbType.VarChar);
+            command.Parameters["@customerID"].Value = customerID;
+            command.Parameters.Add("@productCode", System.Data.SqlDbType.VarChar);
+            command.Parameters["@productCode"].Value = productCode;
             int count = Convert.ToInt32(command.ExecuteScalar());
             return count == 1;
         }
@@ -132,45 +132,67 @@ namespace TechSupport.DAL
         /// <param name="productName">Name of the product.</param>
         /// <param name="title">The title.</param>
         /// <param name="description">The description.</param>
-        public void AddIncident(string customerName, string productName, string title, string description)
+        public void AddIncident(Incident myIncident)
         {
-            using var connection1 = DBConnection.GetConnection();
-            using var connection2 = DBConnection.GetConnection();
-            using var connection3 = DBConnection.GetConnection();
-            connection1.Open();
-            connection2.Open();
-            connection3.Open();
-            const string query1 = "select CustomerID from Customers where Name = @customerName";
-            using var command1 = new SqlCommand(query1, connection1);
-            command1.Parameters.Add("@customerName", System.Data.SqlDbType.VarChar);
-            command1.Parameters["@customerName"].Value = customerName;
-            const string query2 = "select ProductCode from Products where Name = @productName";
-            using var command2 = new SqlCommand(query2, connection2);
-            command2.Parameters.Add("@productName", System.Data.SqlDbType.VarChar);
-            command2.Parameters["@productName"].Value = productName;
-            int customerID = Convert.ToInt32(command1.ExecuteScalar());
-            using var reader2 = command2.ExecuteReader();
-            var productCodeOrdinal = reader2.GetOrdinal("ProductCode");
-            var productCode = "";
-            while (reader2.Read())
-            {
-                productCode = reader2.GetString(productCodeOrdinal);
-            }
+            var customerID = myIncident.CustomerID;
+            var productCode = myIncident.ProductCode;
+            var title = myIncident.Title;
+            var description = myIncident.Description;
             var dateOpened = DateTime.Now;
-            const string query3 = "INSERT INTO Incidents(CustomerID,ProductCode,DateOpened,Title,Description) " + 
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+
+            const string query = "INSERT INTO Incidents(CustomerID,ProductCode,DateOpened,Title,Description) " + 
                 "values(@customerID,@productCode,@dateOpened,@title,@description)";
-            using var command3 = new SqlCommand( query3, connection3);
-            command3.Parameters.Add("@customerID",System.Data.SqlDbType.Int);
-            command3.Parameters["@customerID"].Value = customerID;
-            command3.Parameters.Add("@productCode",System.Data.SqlDbType.VarChar);
-            command3.Parameters["@productCode"].Value = productCode;
-            command3.Parameters.Add("@dateOpened", System.Data.SqlDbType.Date);
-            command3.Parameters["@dateOpened"].Value = dateOpened;
-            command3.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
-            command3.Parameters["@title"].Value = title;
-            command3.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
-            command3.Parameters["@description"].Value = description;
-            command3.ExecuteNonQuery();
+
+            using var command = new SqlCommand( query, connection);
+
+            command.Parameters.Add("@customerID",System.Data.SqlDbType.Int);
+            command.Parameters["@customerID"].Value = customerID;
+
+            command.Parameters.Add("@productCode",System.Data.SqlDbType.VarChar);
+            command.Parameters["@productCode"].Value = productCode;
+
+            command.Parameters.Add("@dateOpened", System.Data.SqlDbType.Date);
+            command.Parameters["@dateOpened"].Value = dateOpened;
+
+            command.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
+            command.Parameters["@title"].Value = title;
+
+            command.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+            command.Parameters["@description"].Value = description;
+
+            command.ExecuteNonQuery();
+        }   
+
+        public int GetCustomerID(string customerName)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "select CustomerID from customers where Name = @customerName";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@customerName", System.Data.SqlDbType.VarChar);
+            command.Parameters["@customerName"].Value = customerName;
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            return count;
+        }
+
+        public string GetProductCode(string productName)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "select ProductCode from products where Name = @productName";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@productName", System.Data.SqlDbType.VarChar);
+            command.Parameters["@productName"].Value = productName;
+            using var reader = command.ExecuteReader();
+            var productCodeOrdinal = reader.GetOrdinal("ProductCode");
+            var productCode = "";
+            while (reader.Read())
+            {
+                productCode = reader.GetString(productCodeOrdinal);
+            }
+            return productCode;
         }
     }
 }

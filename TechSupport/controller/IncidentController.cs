@@ -89,9 +89,9 @@ namespace TechSupport.Controller
         /// <param name="customerName">Name of the customer.</param>
         /// <param name="productName">Name of the product.</param>
         /// <returns></returns>
-        public bool CheckRegisteredOrNot(string customerName, string productName)
+        public bool CheckRegisteredOrNot(int customerID, string productCode)
         {
-            return _incidentDBDAL.CheckRegisteredProductOrNot(customerName,productName);
+            return _incidentDBDAL.CheckRegisteredProductOrNot(customerID,productCode);
         }
 
         /// <summary>
@@ -101,9 +101,19 @@ namespace TechSupport.Controller
         /// <param name="productName">Name of the product.</param>
         /// <param name="title">The title.</param>
         /// <param name="description">The description.</param>
-        public void AddIncident(string customerName, string productName, string title, string description)
+        public void AddIncident(Incident myIncident)
         {
-            _incidentDBDAL.AddIncident(customerName,productName,title,description);
+            _incidentDBDAL.AddIncident(myIncident);
+        }
+
+        public int GetCustomerID(string customerName)
+        {
+            return _incidentDBDAL.GetCustomerID(customerName);
+        }
+
+        public string GetProductCode(string productName)
+        {
+            return _incidentDBDAL.GetProductCode(productName);
         }
     }
 }

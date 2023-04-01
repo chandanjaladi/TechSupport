@@ -1,4 +1,5 @@
 ﻿using TechSupport.Controller;
+using TechSupport.Model;
 
 namespace TechSupport.UserControl
 {
@@ -46,6 +47,7 @@ namespace TechSupport.UserControl
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
         {
+            customerErrorLabel.Visible = false;
             try
             {
 
@@ -60,32 +62,22 @@ namespace TechSupport.UserControl
                     descriptionErrorLabel.Text = "Description cannot be empty!";
                     descriptionErrorLabel.ForeColor = Color.Red;
                     descriptionErrorLabel.Visible = true;
-                    throw new ArgumentException("Title and Description is empty");
                 }
-
-                if (string.IsNullOrEmpty(title))
-                {
-                    titleErrorLabel.Text = "Title cannot be empty!";
-                    titleErrorLabel.ForeColor = Color.Red;
-                    titleErrorLabel.Visible = true;
-                    throw new ArgumentException("Title is empty");
-
-                }
-
-                if (string.IsNullOrEmpty(description))
-                {
-                    descriptionErrorLabel.Text = "Description cannot be empty!";
-                    descriptionErrorLabel.ForeColor = Color.Red;
-                    descriptionErrorLabel.Visible = true;
-                    throw new ArgumentException("Description is empty");
-                }
-
                 var customerName = customerComboBox.SelectedItem.ToString();
                 var productName = productComboBox.SelectedItem.ToString();
-
-                if (_controller.CheckRegisteredOrNot(customerName, productName))
+                var customerID = _controller.GetCustomerID(customerName);
+                var productCode = _controller.GetProductCode(productName);
+                
+                if (_controller.CheckRegisteredOrNot(customerID, productCode))
                 {
-                    _controller.AddIncident(customerName, productName, title, description);
+                    var incident = new Incident
+                    {
+                        CustomerID = customerID,
+                        ProductCode = productCode,
+                        Title = title,
+                        Description = description
+                    };
+                    _controller.AddIncident(incident);
                     ClearFields();
                     customerErrorLabel.Visible = true;
                     customerErrorLabel.ForeColor = Color.Green;
@@ -98,9 +90,20 @@ namespace TechSupport.UserControl
                     customerErrorLabel.Text = "Selected Customer is not registered with selected Product";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                if (ex.Message == "Title cannot be empty!")
+                {
+                    titleErrorLabel.Text = "Title cannot be empty!";
+                    titleErrorLabel.ForeColor = Color.Red;
+                    titleErrorLabel.Visible = true;
+                }
+                if (ex.Message == "Description cannot be empty!")
+                {
+                    descriptionErrorLabel.Text = "Description cannot be empty!";
+                    descriptionErrorLabel.ForeColor = Color.Red;
+                    descriptionErrorLabel.Visible = true;
+                }
             }
         }
 
