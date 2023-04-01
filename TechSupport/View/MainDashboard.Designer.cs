@@ -29,42 +29,46 @@
         private void InitializeComponent()
         {
             tabControl1 = new TabControl();
-            addIncident = new TabPage();
+            addIncidentsTabPage = new TabPage();
             addIncident1 = new UserControl.AddIncidentUserControl();
             openIncidentsTabPage = new TabPage();
             openIncidents1 = new UserControls.OpenIncidentsUserControl();
+            updateIncidentsTabPage = new TabPage();
+            updateIncidentUserControl1 = new UserControls.UpdateIncidentUserControl();
             logoutLabel = new LinkLabel();
             username = new Label();
             informationLabel = new Label();
             tabControl1.SuspendLayout();
-            addIncident.SuspendLayout();
+            addIncidentsTabPage.SuspendLayout();
             openIncidentsTabPage.SuspendLayout();
+            updateIncidentsTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(addIncident);
+            tabControl1.Controls.Add(addIncidentsTabPage);
             tabControl1.Controls.Add(openIncidentsTabPage);
+            tabControl1.Controls.Add(updateIncidentsTabPage);
             tabControl1.Dock = DockStyle.Bottom;
             tabControl1.Location = new Point(0, 38);
             tabControl1.Margin = new Padding(3, 2, 3, 2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(700, 418);
+            tabControl1.Size = new Size(700, 545);
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
-            // addIncident
+            // addIncidentsTabPage
             // 
-            addIncident.Controls.Add(addIncident1);
-            addIncident.Location = new Point(4, 24);
-            addIncident.Margin = new Padding(3, 2, 3, 2);
-            addIncident.Name = "addIncident";
-            addIncident.Padding = new Padding(3, 2, 3, 2);
-            addIncident.Size = new Size(692, 390);
-            addIncident.TabIndex = 0;
-            addIncident.Text = "Add Incident";
-            addIncident.UseVisualStyleBackColor = true;
+            addIncidentsTabPage.Controls.Add(addIncident1);
+            addIncidentsTabPage.Location = new Point(4, 24);
+            addIncidentsTabPage.Margin = new Padding(3, 2, 3, 2);
+            addIncidentsTabPage.Name = "addIncidentsTabPage";
+            addIncidentsTabPage.Padding = new Padding(3, 2, 3, 2);
+            addIncidentsTabPage.Size = new Size(692, 390);
+            addIncidentsTabPage.TabIndex = 0;
+            addIncidentsTabPage.Text = "Add Incident";
+            addIncidentsTabPage.UseVisualStyleBackColor = true;
             // 
             // addIncident1
             // 
@@ -91,6 +95,23 @@
             openIncidents1.Name = "openIncidents1";
             openIncidents1.Size = new Size(692, 390);
             openIncidents1.TabIndex = 0;
+            // 
+            // updateIncidentsTabPage
+            // 
+            updateIncidentsTabPage.Controls.Add(updateIncidentUserControl1);
+            updateIncidentsTabPage.Location = new Point(4, 24);
+            updateIncidentsTabPage.Name = "updateIncidentsTabPage";
+            updateIncidentsTabPage.Size = new Size(692, 517);
+            updateIncidentsTabPage.TabIndex = 4;
+            updateIncidentsTabPage.Text = "Update Incident";
+            updateIncidentsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // updateIncidentUserControl1
+            // 
+            updateIncidentUserControl1.Location = new Point(43, -2);
+            updateIncidentUserControl1.Name = "updateIncidentUserControl1";
+            updateIncidentUserControl1.Size = new Size(613, 511);
+            updateIncidentUserControl1.TabIndex = 0;
             // 
             // logoutLabel
             // 
@@ -125,7 +146,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 456);
+            ClientSize = new Size(700, 583);
             Controls.Add(informationLabel);
             Controls.Add(logoutLabel);
             Controls.Add(username);
@@ -135,8 +156,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
             tabControl1.ResumeLayout(false);
-            addIncident.ResumeLayout(false);
+            addIncidentsTabPage.ResumeLayout(false);
             openIncidentsTabPage.ResumeLayout(false);
+            updateIncidentsTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -144,12 +166,14 @@
         #endregion
 
         private TabControl tabControl1;
-        private TabPage addIncident;
+        private TabPage addIncidentsTabPage;
         private LinkLabel logoutLabel;
         private Label username;
         private UserControl.AddIncidentUserControl addIncident1;
         private TabPage openIncidentsTabPage;
         private UserControls.OpenIncidentsUserControl openIncidents1;
         private Label informationLabel;
+        private TabPage updateIncidentsTabPage;
+        private UserControls.UpdateIncidentUserControl updateIncidentUserControl1;
     }
 }

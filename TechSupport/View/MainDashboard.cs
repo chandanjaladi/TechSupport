@@ -23,7 +23,7 @@ namespace TechSupport.View
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == addIncident)
+            if (tabControl1.SelectedTab == addIncidentsTabPage)
             {
                 informationLabel.Text = "Fill the detials and add an incident";
             }
@@ -39,6 +39,11 @@ namespace TechSupport.View
                 {
                     MessageBox.Show("Please connect to Database");
                 }
+            }
+
+            if (tabControl1.SelectedTab == updateIncidentsTabPage)
+            {
+                informationLabel.Text = "Fill the details to update an incident";
             }
         }
 
