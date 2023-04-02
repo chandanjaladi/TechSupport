@@ -144,5 +144,7 @@ namespace TechSupport.UserControls
             }
             ClearAll();
         }
+
+
     }
 }

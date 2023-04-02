@@ -155,7 +155,7 @@ namespace TechSupport.DAL
             var productCode = myIncident.ProductCode;
             var title = myIncident.Title;
             var description = myIncident.Description;
-            var dateOpened = DateTime.Now;
+            var dateOpened = DateTime.Today;
             using var connection = DBConnection.GetConnection();
             connection.Open();
 
@@ -267,7 +267,7 @@ namespace TechSupport.DAL
                     incident = new UpdateIncident
                     {
                         ProductCode = productCode,
-                        OpenedDate = dateOpened,
+                        OpenedDate = dateOpened.Date,
                         CustomerName = customerName,
                         TechnicianName = technicianName,
                         Title = title,
@@ -279,7 +279,7 @@ namespace TechSupport.DAL
             }
             else
             {
-                return (incident = null);
+                return incident = null;
             }
             
         }
@@ -302,12 +302,15 @@ namespace TechSupport.DAL
             using var connection = DBConnection.GetConnection();
             connection.Open();
             const string query = "update incidents " + 
-                "set TechID = @techID, Description = @description";
+                "set TechID = @techID, Description = @description " +
+                "where IncidentID = @incidentID";
             using var command = new SqlCommand(query, connection);
             command.Parameters.Add("@techID", System.Data.SqlDbType.Int);
             command.Parameters["@techID"].Value = GetTechID(myIncident.TechnicianName);
             command.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
             command.Parameters["@description"].Value = myIncident.Description;
+            command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+            command.Parameters["@incidentID"].Value = myIncident.IncidentID;
 
             command.ExecuteNonQuery();
 
@@ -318,10 +321,13 @@ namespace TechSupport.DAL
             using var connection = DBConnection.GetConnection();
             connection.Open();
             const string query = "update incidents " +
-                "set Description = @description";
+                "set Description = @description " +
+                "where IncidentID = @incidentID";
             using var command = new SqlCommand(query, connection);
             command.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
             command.Parameters["@description"].Value = myIncident.Description;
+            command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+            command.Parameters["@incidentID"].Value = myIncident.IncidentID;
             command.ExecuteNonQuery();
         }
 
@@ -330,10 +336,13 @@ namespace TechSupport.DAL
             using var connection = DBConnection.GetConnection();
             connection.Open();
             const string query = "update incidents " +
-                "set TechID = @techID";
+                "set TechID = @techID " +
+                "where IncidentID = @incidentID";
             using var command = new SqlCommand(query, connection);
             command.Parameters.Add("@techID", System.Data.SqlDbType.Int);
             command.Parameters["@techID"].Value = GetTechID(myIncident.TechnicianName);
+            command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+            command.Parameters["@incidentID"].Value = myIncident.IncidentID;
             command.ExecuteNonQuery();
         }
     }
