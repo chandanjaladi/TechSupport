@@ -12,11 +12,19 @@ using TechSupport.Model;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// This is user control class of updateIncident
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class UpdateIncidentUserControl : System.Windows.Forms.UserControl
     {
         private IncidentController _controller;
         List<string> techniciansNames = new List<string>();
         UpdateIncident myIncident;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateIncidentUserControl"/> class.
+        /// </summary>
         public UpdateIncidentUserControl()
         {
             InitializeComponent();

@@ -65,6 +65,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the customer identifier.
+        /// </summary>
+        /// <value>
+        /// The customer identifier.
+        /// </value>
         public int CustomerID
         {
             get => _customerID;
@@ -75,6 +81,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the product code.
+        /// </summary>
+        /// <value>
+        /// The product code.
+        /// </value>
         public string ProductCode
         {
             get => _productCode;
@@ -85,6 +97,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the opened date.
+        /// </summary>
+        /// <value>
+        /// The opened date.
+        /// </value>
         public DateTime OpenedDate { get => _openedDate; set => _openedDate = value; }
     }
 }

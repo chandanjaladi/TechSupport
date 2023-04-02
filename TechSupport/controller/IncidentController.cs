@@ -106,31 +106,58 @@ namespace TechSupport.Controller
             _incidentDBDAL.AddIncident(myIncident);
         }
 
+        /// <summary>
+        /// Gets the customer ID.
+        /// </summary>
+        /// <param name="customerName">Name of the customer.</param>
+        /// <returns></returns>
         public int GetCustomerID(string customerName)
         {
             return _incidentDBDAL.GetCustomerID(customerName);
         }
 
+        /// <summary>
+        /// Gets the product code.
+        /// </summary>
+        /// <param name="productName">Name of the product.</param>
+        /// <returns></returns>
         public string GetProductCode(string productName)
         {
             return _incidentDBDAL.GetProductCode(productName);
         }
 
+        /// <summary>
+        /// Gets the particular incident.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <returns></returns>
         public UpdateIncident GetParticularIncident(int incidentID)
         {
             return _incidentDBDAL.GetParticularIncident(incidentID);
         }
 
+        /// <summary>
+        /// Gets the technicians names.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetTechniciansNames()
         {
             return _incidentDBDAL.GetTechinicansNames();
         }
 
+        /// <summary>
+        /// Updates the incident.
+        /// </summary>
+        /// <param name="myIncident">My incident.</param>
         public void UpdateIncident(UpdateIncident myIncident)
         {
             _incidentDBDAL.UpdateIncident(myIncident);
         }
 
+        /// <summary>
+        /// Closes the incident.
+        /// </summary>
+        /// <param name="myIncident">My incident.</param>
         public void CloseIncident(UpdateIncident myIncident)
         {
             _incidentDBDAL.CloseIncident(myIncident);

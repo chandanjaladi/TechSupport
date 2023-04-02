@@ -104,6 +104,10 @@ namespace TechSupport.DAL
             return products;
         }
 
+        /// <summary>
+        /// Gets the techinicans names.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetTechinicansNames()
         {
             var technicians = new List<String>();
@@ -180,8 +184,13 @@ namespace TechSupport.DAL
             command.Parameters["@description"].Value = description;
 
             command.ExecuteNonQuery();
-        }   
+        }
 
+        /// <summary>
+        /// Gets the customer identifier.
+        /// </summary>
+        /// <param name="customerName">Name of the customer.</param>
+        /// <returns></returns>
         public int GetCustomerID(string customerName)
         {
             using var connection = DBConnection.GetConnection();
@@ -194,6 +203,11 @@ namespace TechSupport.DAL
             return count;
         }
 
+        /// <summary>
+        /// Gets the tech identifier.
+        /// </summary>
+        /// <param name="technicianName">Name of the technician.</param>
+        /// <returns></returns>
         public int GetTechID(string technicianName)
         {
             using var connection = DBConnection.GetConnection();
@@ -206,6 +220,11 @@ namespace TechSupport.DAL
             return count;
         }
 
+        /// <summary>
+        /// Gets the product code.
+        /// </summary>
+        /// <param name="productName">Name of the product.</param>
+        /// <returns></returns>
         public string GetProductCode(string productName)
         {
             using var connection = DBConnection.GetConnection();
@@ -224,6 +243,11 @@ namespace TechSupport.DAL
             return productCode;
         }
 
+        /// <summary>
+        /// Gets the particular incident.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <returns></returns>
         public UpdateIncident GetParticularIncident(int incidentID)
         {
             var incident = new UpdateIncident();
@@ -295,6 +319,11 @@ namespace TechSupport.DAL
             
         }
 
+        /// <summary>
+        /// Checks the incident present or not.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <returns></returns>
         public bool CheckIncidentPresentOrNot (int incidentID)
         {
             using var connection = DBConnection.GetConnection();
@@ -308,6 +337,10 @@ namespace TechSupport.DAL
             return count == 0;
         }
 
+        /// <summary>
+        /// Updates the incident.
+        /// </summary>
+        /// <param name="myIncident">My incident.</param>
         public void UpdateIncident(UpdateIncident myIncident)
         {
             using var connection = DBConnection.GetConnection();
@@ -327,6 +360,10 @@ namespace TechSupport.DAL
 
         }
 
+        /// <summary>
+        /// Closes the incident.
+        /// </summary>
+        /// <param name="myIncident">My incident.</param>
         public void CloseIncident(UpdateIncident myIncident)
         {
             using var connection = DBConnection.GetConnection();
