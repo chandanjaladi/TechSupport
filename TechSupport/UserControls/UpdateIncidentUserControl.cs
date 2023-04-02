@@ -121,7 +121,7 @@ namespace TechSupport.UserControls
                 if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != myIncident.TechnicianName)
                 {
 
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
+                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
                     if (description.Length >= 200)
                     {
                         overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
@@ -141,7 +141,7 @@ namespace TechSupport.UserControls
                 }
                 else if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
                 {
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
+                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
                     if (description.Length >= 200)
                     {
                         overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
@@ -189,7 +189,7 @@ namespace TechSupport.UserControls
                 DialogResult overloadedDescription = DialogResult.OK;
                 if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != myIncident.TechnicianName)
                 {
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
+                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
 
                     if (description.Length >= 200)
                     {
@@ -216,7 +216,7 @@ namespace TechSupport.UserControls
                 }
                 else if (textToAddTextBox.Text != "")
                 {
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
+                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
                     if (description.Length >= 200)
                     {
                         overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
