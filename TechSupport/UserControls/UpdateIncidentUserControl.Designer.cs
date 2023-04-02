@@ -228,6 +228,7 @@
             closeButton.TabIndex = 23;
             closeButton.Text = "Close";
             closeButton.UseVisualStyleBackColor = true;
+            closeButton.Click += closeButton_Click;
             // 
             // clearButton
             // 
@@ -247,6 +248,7 @@
             updateErrorLabel.Size = new Size(38, 15);
             updateErrorLabel.TabIndex = 25;
             updateErrorLabel.Text = "label9";
+            updateErrorLabel.Visible = false;
             // 
             // UpdateIncidentUserControl
             // 

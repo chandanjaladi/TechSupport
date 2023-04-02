@@ -31,10 +31,11 @@ namespace TechSupport.UserControls
             myIncident = new UpdateIncident();
             updateButton.Enabled = false;
             closeButton.Enabled = false;
+            textToAddTextBox.Enabled = false;
         }
 
         private void incidentTextBox_KeyPress(object sender, KeyPressEventArgs e)
-       {
+        {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
@@ -58,11 +59,13 @@ namespace TechSupport.UserControls
             technicianComboBox.SelectedIndex = techniciansNames.Count - 1;
             updateButton.Enabled = false;
             closeButton.Enabled = false;
+            textToAddTextBox.Enabled = false;
         }
 
         private void getIncident_Click(object sender, EventArgs e)
         {
             incidentErrorLabel.Visible = false;
+            updateErrorLabel.Visible = false;
 
             try
             {
@@ -86,6 +89,7 @@ namespace TechSupport.UserControls
                     }
                     updateButton.Enabled = true;
                     closeButton.Enabled = true;
+                    textToAddTextBox.Enabled = true;
                 }
                 else
                 {
@@ -118,12 +122,18 @@ namespace TechSupport.UserControls
                     myIncident.Description = description;
                     myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
                     _controller.UpdateIncident(myIncident);
-                } 
-                else if(textToAddTextBox.Text != "")
+                    updateErrorLabel.Text = "Incident updated successfully";
+                    updateErrorLabel.ForeColor = Color.Green;
+                    updateErrorLabel.Visible = true;
+                }
+                else if (textToAddTextBox.Text != "")
                 {
                     var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
                     myIncident.Description = description;
                     _controller.UpdateIncidentDescription(myIncident);
+                    updateErrorLabel.Text = "Incident updated successfully";
+                    updateErrorLabel.ForeColor = Color.Green;
+                    updateErrorLabel.Visible = true;
                 }
                 else
                 {
@@ -131,6 +141,9 @@ namespace TechSupport.UserControls
                     {
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
                         _controller.UpdateIncidentTechnician(myIncident);
+                        updateErrorLabel.Text = "Incident updated successfully";
+                        updateErrorLabel.ForeColor = Color.Green;
+                        updateErrorLabel.Visible = true;
                     }
                     else
                     {
@@ -138,13 +151,83 @@ namespace TechSupport.UserControls
                         updateErrorLabel.ForeColor = Color.Red;
                         updateErrorLabel.Visible = true;
                     }
-                   
+
                 }
 
             }
-            ClearAll();
+            //ClearAll();
         }
 
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
+            {
+                DialogResult result;
+                if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != myIncident.TechnicianName)
+                {
+                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
+                    myIncident.Description = description;
+                    myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
+                    
+                    result = MessageBox.Show("Would you like to close the incident?","Closing incident",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                    if (result == DialogResult.OK)
+                    {
+                        _controller.UpdateIncident(myIncident);
+                        _controller.CloseIncident(myIncident);
+                        updateErrorLabel.Text = "Incident closed successfully";
+                        updateErrorLabel.ForeColor = Color.Green;
+                        updateErrorLabel.Visible = true;
+                    }
+                    
+                }
+                else if (textToAddTextBox.Text != "")
+                {
+                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
+                    myIncident.Description = description;
+                    
+                    result = MessageBox.Show("Would you like to close the incident?", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.OK)
+                    {
+                        _controller.UpdateIncidentDescription(myIncident);
+                        _controller.CloseIncident(myIncident);
+                        updateErrorLabel.Text = "Incident closed successfully";
+                        updateErrorLabel.ForeColor = Color.Green;
+                        updateErrorLabel.Visible = true;
+                    }
+                }
+                else
+                {
+                    if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
+                    {
+                        myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
+                        
+                        result = MessageBox.Show("Would you like to close the incident?", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        if (result == DialogResult.OK)
+                        {
+                            _controller.UpdateIncidentTechnician(myIncident);
+                            _controller.CloseIncident(myIncident);
 
+                            updateErrorLabel.Text = "Incident closed successfully";
+                            updateErrorLabel.ForeColor = Color.Green;
+                            updateErrorLabel.Visible = true;
+                        }
+
+                    }
+                    else
+                    {
+                        updateErrorLabel.Text = "Cannot close with unassigned technician";
+                        updateErrorLabel.ForeColor = Color.Red;
+                        updateErrorLabel.Visible = true;
+                    }
+
+                }
+            }
+            else
+            {
+                updateErrorLabel.Text = "Cannot close incident with unassigned technician";
+                updateErrorLabel.ForeColor = Color.Red;
+                updateErrorLabel.Visible = true;
+            }
+        }
     }
 }

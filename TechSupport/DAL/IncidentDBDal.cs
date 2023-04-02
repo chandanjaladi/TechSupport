@@ -345,5 +345,21 @@ namespace TechSupport.DAL
             command.Parameters["@incidentID"].Value = myIncident.IncidentID;
             command.ExecuteNonQuery();
         }
+
+        public void CloseIncident(UpdateIncident myIncident)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "update incidents " +
+                "set DateClosed = @date " +
+                "where IncidentID = @incidentID";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@date", System.Data.SqlDbType.Date);
+            command.Parameters["@date"].Value = DateTime.Now;
+            command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+            command.Parameters["@incidentID"].Value = myIncident.IncidentID;
+
+            command.ExecuteNonQuery();
+        }
     }
 }

@@ -140,5 +140,10 @@ namespace TechSupport.Controller
         {
             _incidentDBDAL.UpdateIncidentTechnician(myIncident);
         }
+
+        public void CloseIncident(UpdateIncident myIncident)
+        {
+            _incidentDBDAL.CloseIncident(myIncident);
+        }
     }
 }
