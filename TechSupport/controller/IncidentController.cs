@@ -125,5 +125,20 @@ namespace TechSupport.Controller
         {
             return _incidentDBDAL.GetTechinicansNames();
         }
+
+        public void UpdateIncident(UpdateIncident myIncident)
+        {
+            _incidentDBDAL.UpdateIncident(myIncident);
+        }
+
+        public void UpdateIncidentDescription(UpdateIncident myIncident)
+        {
+            _incidentDBDAL.UpdateIncidentDescription(myIncident);
+        }
+
+        public void UpdateIncidentTechnician(UpdateIncident myIncident)
+        {
+            _incidentDBDAL.UpdateIncidentTechnician(myIncident);
+        }
     }
 }

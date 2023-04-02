@@ -194,6 +194,18 @@ namespace TechSupport.DAL
             return count;
         }
 
+        public int GetTechID(string technicianName)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "select TechID from technicians where Name = @technicianName";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@technicianName", System.Data.SqlDbType.VarChar);
+            command.Parameters["@technicianName"].Value = technicianName;
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            return count;
+        }
+
         public string GetProductCode(string productName)
         {
             using var connection = DBConnection.GetConnection();
@@ -219,9 +231,11 @@ namespace TechSupport.DAL
             {
                 using var connection = DBConnection.GetConnection();
                 connection.Open();
-                const string query = "select Customers.Name as CustomerName, ProductCode, Technicians.Name as TechnicianName , DateOpened, Title, Description " + 
-                                        "from incidents, Technicians, Customers " + 
-                                        "where IncidentID = @incidentID and Incidents.CustomerID = Customers.CustomerID and Incidents.TechID = Technicians.TechID";
+                const string query = "select Customers.Name as CustomerName, ProductCode, Technicians.Name as TechnicianName , DateOpened, Title, Description " +
+                                        "from Customers, incidents " +
+                                        "left join Technicians " +
+                                        "on Technicians.TechID = Incidents.TechID " +
+                                        "where IncidentID = @incidentID and Incidents.CustomerID = Customers.CustomerID";
                 using var command = new SqlCommand(query, connection);
                 command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
                 command.Parameters["@incidentID"].Value = incidentID;
@@ -237,9 +251,18 @@ namespace TechSupport.DAL
                     var productCode = reader.GetString(productCodeOrdinal);
                     var dateOpened = reader.GetDateTime(dateOpenedOrdinal);
                     var customerName = reader.GetString(customersNameOrdinal);
-                    string? technicianName = reader.GetString(technicianOrdinal);
+                    var technicianName = "";
                     var title = reader.GetString(titleOrdinal);
                     var description = reader.GetString(descriptionOrdinal);
+
+                    if (reader.IsDBNull(technicianOrdinal))
+                    {
+                        technicianName = "-- Unassigned --";
+                    }
+                    else
+                    {
+                        technicianName = reader.GetString(technicianOrdinal);
+                    }
 
                     incident = new UpdateIncident
                     {
@@ -248,7 +271,8 @@ namespace TechSupport.DAL
                         CustomerName = customerName,
                         TechnicianName = technicianName,
                         Title = title,
-                        Description = description
+                        Description = description,
+                        IncidentID = incidentID
                     };
                 }
                 return incident;
@@ -271,6 +295,46 @@ namespace TechSupport.DAL
             command.Parameters["@incidentID"].Value = incidentID;
             int count = Convert.ToInt32(command.ExecuteScalar());
             return count == 0;
+        }
+
+        public void UpdateIncident(UpdateIncident myIncident)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "update incidents " + 
+                "set TechID = @techID, Description = @description";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@techID", System.Data.SqlDbType.Int);
+            command.Parameters["@techID"].Value = GetTechID(myIncident.TechnicianName);
+            command.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+            command.Parameters["@description"].Value = myIncident.Description;
+
+            command.ExecuteNonQuery();
+
+        }
+
+        public void UpdateIncidentDescription(UpdateIncident myIncident)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "update incidents " +
+                "set Description = @description";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+            command.Parameters["@description"].Value = myIncident.Description;
+            command.ExecuteNonQuery();
+        }
+
+        public void UpdateIncidentTechnician(UpdateIncident myIncident)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "update incidents " +
+                "set TechID = @techID";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@techID", System.Data.SqlDbType.Int);
+            command.Parameters["@techID"].Value = GetTechID(myIncident.TechnicianName);
+            command.ExecuteNonQuery();
         }
     }
 }

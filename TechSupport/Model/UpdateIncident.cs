@@ -15,5 +15,6 @@ namespace TechSupport.Model
         public string Description { get; set; }
         public DateTime OpenedDate { get; set; }
         public string TextToAdd { get; set; }
+        public int IncidentID { get; set; }
     }
 }

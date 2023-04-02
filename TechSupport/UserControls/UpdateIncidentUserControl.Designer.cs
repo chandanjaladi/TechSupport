@@ -49,6 +49,7 @@
             updateButton = new Button();
             closeButton = new Button();
             clearButton = new Button();
+            updateErrorLabel = new Label();
             SuspendLayout();
             // 
             // label1
@@ -145,6 +146,7 @@
             // 
             customerTextBox.Location = new Point(133, 89);
             customerTextBox.Name = "customerTextBox";
+            customerTextBox.ReadOnly = true;
             customerTextBox.Size = new Size(230, 23);
             customerTextBox.TabIndex = 10;
             // 
@@ -152,6 +154,7 @@
             // 
             productTextBox.Location = new Point(133, 128);
             productTextBox.Name = "productTextBox";
+            productTextBox.ReadOnly = true;
             productTextBox.Size = new Size(230, 23);
             productTextBox.TabIndex = 11;
             // 
@@ -159,6 +162,7 @@
             // 
             titleTextBox.Location = new Point(133, 205);
             titleTextBox.Name = "titleTextBox";
+            titleTextBox.ReadOnly = true;
             titleTextBox.Size = new Size(230, 23);
             titleTextBox.TabIndex = 12;
             // 
@@ -166,6 +170,7 @@
             // 
             dateOpenedTextBox.Location = new Point(133, 245);
             dateOpenedTextBox.Name = "dateOpenedTextBox";
+            dateOpenedTextBox.ReadOnly = true;
             dateOpenedTextBox.Size = new Size(230, 23);
             dateOpenedTextBox.TabIndex = 13;
             // 
@@ -174,6 +179,7 @@
             descriptionTextBox.Location = new Point(133, 286);
             descriptionTextBox.Multiline = true;
             descriptionTextBox.Name = "descriptionTextBox";
+            descriptionTextBox.ReadOnly = true;
             descriptionTextBox.Size = new Size(230, 68);
             descriptionTextBox.TabIndex = 18;
             // 
@@ -206,16 +212,17 @@
             // 
             // updateButton
             // 
-            updateButton.Location = new Point(133, 472);
+            updateButton.Location = new Point(133, 483);
             updateButton.Name = "updateButton";
             updateButton.Size = new Size(75, 23);
             updateButton.TabIndex = 22;
             updateButton.Text = "Update";
             updateButton.UseVisualStyleBackColor = true;
+            updateButton.Click += updateButton_Click;
             // 
             // closeButton
             // 
-            closeButton.Location = new Point(224, 472);
+            closeButton.Location = new Point(224, 483);
             closeButton.Name = "closeButton";
             closeButton.Size = new Size(75, 23);
             closeButton.TabIndex = 23;
@@ -224,7 +231,7 @@
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(322, 472);
+            clearButton.Location = new Point(322, 483);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(75, 23);
             clearButton.TabIndex = 24;
@@ -232,10 +239,20 @@
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
             // 
+            // updateErrorLabel
+            // 
+            updateErrorLabel.AutoSize = true;
+            updateErrorLabel.Location = new Point(182, 456);
+            updateErrorLabel.Name = "updateErrorLabel";
+            updateErrorLabel.Size = new Size(38, 15);
+            updateErrorLabel.TabIndex = 25;
+            updateErrorLabel.Text = "label9";
+            // 
             // UpdateIncidentUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(updateErrorLabel);
             Controls.Add(clearButton);
             Controls.Add(closeButton);
             Controls.Add(updateButton);
@@ -286,5 +303,6 @@
         private Button updateButton;
         private Button closeButton;
         private Button clearButton;
+        private Label updateErrorLabel;
     }
 }
