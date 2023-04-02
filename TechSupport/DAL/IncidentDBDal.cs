@@ -104,6 +104,23 @@ namespace TechSupport.DAL
             return products;
         }
 
+        public List<string> GetTechinicansNames()
+        {
+            var technicians = new List<String>();
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "select Name from technicians";
+            using var command = new SqlCommand(query, connection);
+            using var reader = command.ExecuteReader();
+            var productNameOrdinal = reader.GetOrdinal("Name");
+            while (reader.Read())
+            {
+                var product = reader.GetString(productNameOrdinal);
+                technicians.Add(product);
+            }
+            return technicians;
+        }
+
         /// <summary>
         /// Checks if the customers and products are registered or not.
         /// </summary>
@@ -193,6 +210,67 @@ namespace TechSupport.DAL
                 productCode = reader.GetString(productCodeOrdinal);
             }
             return productCode;
+        }
+
+        public UpdateIncident GetParticularIncident(int incidentID)
+        {
+            var incident = new UpdateIncident();
+            if (!CheckIncidentPresentOrNot(incidentID))
+            {
+                using var connection = DBConnection.GetConnection();
+                connection.Open();
+                const string query = "select Customers.Name as CustomerName, ProductCode, Technicians.Name as TechnicianName , DateOpened, Title, Description " + 
+                                        "from incidents, Technicians, Customers " + 
+                                        "where IncidentID = @incidentID and Incidents.CustomerID = Customers.CustomerID and Incidents.TechID = Technicians.TechID";
+                using var command = new SqlCommand(query, connection);
+                command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+                command.Parameters["@incidentID"].Value = incidentID;
+                using var reader = command.ExecuteReader();
+                var customersNameOrdinal = reader.GetOrdinal("CustomerName");
+                var productCodeOrdinal = reader.GetOrdinal("ProductCode");
+                var technicianOrdinal = reader.GetOrdinal("TechnicianName");
+                var dateOpenedOrdinal = reader.GetOrdinal("DateOpened");
+                var titleOrdinal = reader.GetOrdinal("Title");
+                var descriptionOrdinal = reader.GetOrdinal("Description");
+                while (reader.Read())
+                {
+                    var productCode = reader.GetString(productCodeOrdinal);
+                    var dateOpened = reader.GetDateTime(dateOpenedOrdinal);
+                    var customerName = reader.GetString(customersNameOrdinal);
+                    string? technicianName = reader.GetString(technicianOrdinal);
+                    var title = reader.GetString(titleOrdinal);
+                    var description = reader.GetString(descriptionOrdinal);
+
+                    incident = new UpdateIncident
+                    {
+                        ProductCode = productCode,
+                        OpenedDate = dateOpened,
+                        CustomerName = customerName,
+                        TechnicianName = technicianName,
+                        Title = title,
+                        Description = description
+                    };
+                }
+                return incident;
+            }
+            else
+            {
+                return (incident = null);
+            }
+            
+        }
+
+        public bool CheckIncidentPresentOrNot (int incidentID)
+        {
+            using var connection = DBConnection.GetConnection();
+            connection.Open();
+            const string query = "select count(*) from incidents" +
+                " where IncidentID = @incidentID";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+            command.Parameters["@incidentID"].Value = incidentID;
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            return count == 0;
         }
     }
 }

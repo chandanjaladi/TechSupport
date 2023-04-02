@@ -43,8 +43,8 @@
             titleTextBox = new TextBox();
             dateOpenedTextBox = new TextBox();
             descriptionTextBox = new TextBox();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
+            textToAddTextBox = new TextBox();
+            technicianComboBox = new ComboBox();
             getIncident = new Button();
             updateButton = new Button();
             closeButton = new Button();
@@ -139,6 +139,7 @@
             incidentTextBox.Name = "incidentTextBox";
             incidentTextBox.Size = new Size(121, 23);
             incidentTextBox.TabIndex = 9;
+            incidentTextBox.KeyPress += incidentTextBox_KeyPress;
             // 
             // customerTextBox
             // 
@@ -176,22 +177,22 @@
             descriptionTextBox.Size = new Size(230, 68);
             descriptionTextBox.TabIndex = 18;
             // 
-            // textBox1
+            // textToAddTextBox
             // 
-            textBox1.Location = new Point(133, 378);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(230, 68);
-            textBox1.TabIndex = 19;
+            textToAddTextBox.Location = new Point(133, 378);
+            textToAddTextBox.Multiline = true;
+            textToAddTextBox.Name = "textToAddTextBox";
+            textToAddTextBox.Size = new Size(230, 68);
+            textToAddTextBox.TabIndex = 19;
             // 
-            // comboBox1
+            // technicianComboBox
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(133, 165);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(230, 23);
-            comboBox1.TabIndex = 20;
+            technicianComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            technicianComboBox.FormattingEnabled = true;
+            technicianComboBox.Location = new Point(133, 165);
+            technicianComboBox.Name = "technicianComboBox";
+            technicianComboBox.Size = new Size(230, 23);
+            technicianComboBox.TabIndex = 20;
             // 
             // getIncident
             // 
@@ -201,6 +202,7 @@
             getIncident.TabIndex = 21;
             getIncident.Text = "Get";
             getIncident.UseVisualStyleBackColor = true;
+            getIncident.Click += getIncident_Click;
             // 
             // updateButton
             // 
@@ -228,6 +230,7 @@
             clearButton.TabIndex = 24;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // UpdateIncidentUserControl
             // 
@@ -237,8 +240,8 @@
             Controls.Add(closeButton);
             Controls.Add(updateButton);
             Controls.Add(getIncident);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox1);
+            Controls.Add(technicianComboBox);
+            Controls.Add(textToAddTextBox);
             Controls.Add(descriptionTextBox);
             Controls.Add(dateOpenedTextBox);
             Controls.Add(titleTextBox);
@@ -277,8 +280,8 @@
         private TextBox titleTextBox;
         private TextBox dateOpenedTextBox;
         private TextBox descriptionTextBox;
-        private TextBox textBox1;
-        private ComboBox comboBox1;
+        private TextBox textToAddTextBox;
+        private ComboBox technicianComboBox;
         private Button getIncident;
         private Button updateButton;
         private Button closeButton;

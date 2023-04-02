@@ -9,6 +9,7 @@
         private string _description;
         private int _customerID;
         private string _productCode;
+        private DateTime _openedDate;
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
@@ -83,6 +84,7 @@
                 _productCode = value;
             }
         }
-        
+
+        public DateTime OpenedDate { get => _openedDate; set => _openedDate = value; }
     }
 }

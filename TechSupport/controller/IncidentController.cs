@@ -115,5 +115,15 @@ namespace TechSupport.Controller
         {
             return _incidentDBDAL.GetProductCode(productName);
         }
+
+        public UpdateIncident GetParticularIncident(int incidentID)
+        {
+            return _incidentDBDAL.GetParticularIncident(incidentID);
+        }
+
+        public List<string> GetTechniciansNames()
+        {
+            return _incidentDBDAL.GetTechinicansNames();
+        }
     }
 }
