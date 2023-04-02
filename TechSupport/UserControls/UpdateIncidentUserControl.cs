@@ -108,9 +108,9 @@ namespace TechSupport.UserControls
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if (technicianComboBox.SelectedItem.ToString() == myIncident.TechnicianName && textToAddTextBox.Text == "")
+            if ((technicianComboBox.SelectedItem.ToString() == myIncident.TechnicianName && textToAddTextBox.Text == "") || myIncident.ClosedDate != new DateTime())
             {
-                updateErrorLabel.Text = "Cannot update with no new changes";
+                updateErrorLabel.Text = "Cannot update closed item OR with no new changes";
                 updateErrorLabel.ForeColor = Color.Red;
                 updateErrorLabel.Visible = true;
             }
@@ -125,6 +125,8 @@ namespace TechSupport.UserControls
                     updateErrorLabel.Text = "Incident updated successfully";
                     updateErrorLabel.ForeColor = Color.Green;
                     updateErrorLabel.Visible = true;
+                    textToAddTextBox.Clear();
+                    descriptionTextBox.Text = myIncident.Description;
                 }
                 else if (textToAddTextBox.Text != "")
                 {
@@ -134,6 +136,8 @@ namespace TechSupport.UserControls
                     updateErrorLabel.Text = "Incident updated successfully";
                     updateErrorLabel.ForeColor = Color.Green;
                     updateErrorLabel.Visible = true;
+                    textToAddTextBox.Clear();
+                    descriptionTextBox.Text = myIncident.Description;
                 }
                 else
                 {
@@ -177,6 +181,8 @@ namespace TechSupport.UserControls
                         updateErrorLabel.Text = "Incident closed successfully";
                         updateErrorLabel.ForeColor = Color.Green;
                         updateErrorLabel.Visible = true;
+                        textToAddTextBox.Clear();
+                        descriptionTextBox.Text = myIncident.Description;
                     }
                     
                 }
@@ -193,6 +199,8 @@ namespace TechSupport.UserControls
                         updateErrorLabel.Text = "Incident closed successfully";
                         updateErrorLabel.ForeColor = Color.Green;
                         updateErrorLabel.Visible = true;
+                        textToAddTextBox.Clear();
+                        descriptionTextBox.Text = myIncident.Description;
                     }
                 }
                 else

@@ -231,7 +231,7 @@ namespace TechSupport.DAL
             {
                 using var connection = DBConnection.GetConnection();
                 connection.Open();
-                const string query = "select Customers.Name as CustomerName, ProductCode, Technicians.Name as TechnicianName , DateOpened, Title, Description " +
+                const string query = "select Customers.Name as CustomerName, ProductCode, Technicians.Name as TechnicianName , DateOpened, DateClosed, Title, Description " +
                                         "from Customers, incidents " +
                                         "left join Technicians " +
                                         "on Technicians.TechID = Incidents.TechID " +
@@ -244,6 +244,7 @@ namespace TechSupport.DAL
                 var productCodeOrdinal = reader.GetOrdinal("ProductCode");
                 var technicianOrdinal = reader.GetOrdinal("TechnicianName");
                 var dateOpenedOrdinal = reader.GetOrdinal("DateOpened");
+                var dateClosedOrdinal = reader.GetOrdinal("DateClosed");
                 var titleOrdinal = reader.GetOrdinal("Title");
                 var descriptionOrdinal = reader.GetOrdinal("Description");
                 while (reader.Read())
@@ -254,6 +255,7 @@ namespace TechSupport.DAL
                     var technicianName = "";
                     var title = reader.GetString(titleOrdinal);
                     var description = reader.GetString(descriptionOrdinal);
+                    var dateClosed = new DateTime();
 
                     if (reader.IsDBNull(technicianOrdinal))
                     {
@@ -262,6 +264,14 @@ namespace TechSupport.DAL
                     else
                     {
                         technicianName = reader.GetString(technicianOrdinal);
+                    }
+                    if (reader.IsDBNull(dateClosedOrdinal))
+                    {
+                        dateClosed = new DateTime();
+                    }
+                    else
+                    {
+                        dateClosed = reader.GetDateTime(dateClosedOrdinal);
                     }
 
                     incident = new UpdateIncident
@@ -272,7 +282,8 @@ namespace TechSupport.DAL
                         TechnicianName = technicianName,
                         Title = title,
                         Description = description,
-                        IncidentID = incidentID
+                        IncidentID = incidentID,
+                        ClosedDate = dateClosed.Date
                     };
                 }
                 return incident;
