@@ -90,6 +90,7 @@ namespace TechSupport.UserControls
                     updateButton.Enabled = true;
                     closeButton.Enabled = true;
                     textToAddTextBox.Enabled = true;
+                    textToAddTextBox.Clear();
                 }
                 else
                 {
@@ -128,7 +129,7 @@ namespace TechSupport.UserControls
 
                     if (overloadedDescription == DialogResult.OK)
                     {
-                        myIncident.Description = description[..200];
+                        myIncident.Description = Truncate(description, 200);
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
                         _controller.UpdateIncident(myIncident);
                         updateErrorLabel.Text = "Incident updated successfully";
@@ -138,7 +139,7 @@ namespace TechSupport.UserControls
                         descriptionTextBox.Text = myIncident.Description;
                     }
                 }
-                else if (textToAddTextBox.Text != "")
+                else if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
                 {
                     var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now + ">" + textToAddTextBox.Text;
                     if (description.Length >= 200)
@@ -148,8 +149,8 @@ namespace TechSupport.UserControls
 
                     if (overloadedDescription == DialogResult.OK)
                     {
-                        myIncident.Description = description[..200];
-                        _controller.UpdateIncidentDescription(myIncident);
+                        myIncident.Description = Truncate(description,200);
+                        _controller.UpdateIncident(myIncident);
                         updateErrorLabel.Text = "Incident updated successfully";
                         updateErrorLabel.ForeColor = Color.Green;
                         updateErrorLabel.Visible = true;
@@ -162,7 +163,7 @@ namespace TechSupport.UserControls
                     if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
                     {
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
-                        _controller.UpdateIncidentTechnician(myIncident);
+                        _controller.UpdateIncident(myIncident);
                         updateErrorLabel.Text = "Incident updated successfully";
                         updateErrorLabel.ForeColor = Color.Green;
                         updateErrorLabel.Visible = true;
@@ -197,7 +198,7 @@ namespace TechSupport.UserControls
 
                     if (overloadedDescription == DialogResult.OK)
                     {
-                        myIncident.Description = description[..200];
+                        myIncident.Description = Truncate(description, 200);
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
                     }
                     result = MessageBox.Show("Would you like to close the incident?","Closing incident",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
@@ -223,14 +224,14 @@ namespace TechSupport.UserControls
 
                     if (overloadedDescription == DialogResult.OK)
                     {
-                        myIncident.Description = description[..200];
+                        myIncident.Description = Truncate(description, 200);
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
                     }
 
                     result = MessageBox.Show("Would you like to close the incident? You cannot update the incident after closing it!", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (result == DialogResult.OK)
                     {
-                        _controller.UpdateIncidentDescription(myIncident);
+                        _controller.UpdateIncident(myIncident);
                         _controller.CloseIncident(myIncident);
                         updateErrorLabel.Text = "Incident closed successfully";
                         updateErrorLabel.ForeColor = Color.Green;
@@ -248,7 +249,7 @@ namespace TechSupport.UserControls
                         result = MessageBox.Show("Would you like to close the incident?", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         if (result == DialogResult.OK)
                         {
-                            _controller.UpdateIncidentTechnician(myIncident);
+                            _controller.UpdateIncident(myIncident);
                             _controller.CloseIncident(myIncident);
 
                             updateErrorLabel.Text = "Incident closed successfully";
@@ -272,6 +273,11 @@ namespace TechSupport.UserControls
                 updateErrorLabel.ForeColor = Color.Red;
                 updateErrorLabel.Visible = true;
             }
+        }
+
+        private string Truncate(string variable, int Length)
+        {
+            return variable.Length <= Length ? variable : variable.Substring(0, Length);
         }
     }
 }

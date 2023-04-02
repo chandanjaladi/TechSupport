@@ -327,36 +327,6 @@ namespace TechSupport.DAL
 
         }
 
-        public void UpdateIncidentDescription(UpdateIncident myIncident)
-        {
-            using var connection = DBConnection.GetConnection();
-            connection.Open();
-            const string query = "update incidents " +
-                "set Description = @description " +
-                "where IncidentID = @incidentID";
-            using var command = new SqlCommand(query, connection);
-            command.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
-            command.Parameters["@description"].Value = myIncident.Description;
-            command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
-            command.Parameters["@incidentID"].Value = myIncident.IncidentID;
-            command.ExecuteNonQuery();
-        }
-
-        public void UpdateIncidentTechnician(UpdateIncident myIncident)
-        {
-            using var connection = DBConnection.GetConnection();
-            connection.Open();
-            const string query = "update incidents " +
-                "set TechID = @techID " +
-                "where IncidentID = @incidentID";
-            using var command = new SqlCommand(query, connection);
-            command.Parameters.Add("@techID", System.Data.SqlDbType.Int);
-            command.Parameters["@techID"].Value = GetTechID(myIncident.TechnicianName);
-            command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
-            command.Parameters["@incidentID"].Value = myIncident.IncidentID;
-            command.ExecuteNonQuery();
-        }
-
         public void CloseIncident(UpdateIncident myIncident)
         {
             using var connection = DBConnection.GetConnection();

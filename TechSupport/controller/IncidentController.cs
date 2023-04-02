@@ -131,16 +131,6 @@ namespace TechSupport.Controller
             _incidentDBDAL.UpdateIncident(myIncident);
         }
 
-        public void UpdateIncidentDescription(UpdateIncident myIncident)
-        {
-            _incidentDBDAL.UpdateIncidentDescription(myIncident);
-        }
-
-        public void UpdateIncidentTechnician(UpdateIncident myIncident)
-        {
-            _incidentDBDAL.UpdateIncidentTechnician(myIncident);
-        }
-
         public void CloseIncident(UpdateIncident myIncident)
         {
             _incidentDBDAL.CloseIncident(myIncident);
