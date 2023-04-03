@@ -127,43 +127,49 @@ namespace TechSupport.UserControls
             }
             else
             {
-
-                if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != myIncident.TechnicianName)
+                if (descriptionTextBox.Text.Length < 200)
                 {
-
-                    if (CheckDescription() == DialogResult.OK)
+                    if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != myIncident.TechnicianName)
                     {
-                        var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
-                        myIncident.Description = Truncate(description, 200);
-                        myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
-                        UpdateIncident();
+
+                        if (CheckDescription() == DialogResult.OK)
+                        {
+                            var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
+                            myIncident.Description = Truncate(description, 200);
+                            myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
+                            UpdateIncident();
+                        }
                     }
-                }
-                else if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
-                {
-                    if (CheckDescription() == DialogResult.OK)
+                    else if (textToAddTextBox.Text != "")
                     {
-                        var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
-                        myIncident.Description = Truncate(description, 200);
-                        UpdateIncident();
+                        if (CheckDescription() == DialogResult.OK)
+                        {
+                            var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
+                            myIncident.Description = Truncate(description, 200);
+                            UpdateIncident();
+                        }
+                    }
+                    else
+                    {
+                        if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
+                        {
+                            myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
+                            UpdateIncident();
+                        }
+                        else
+                        {
+                            updateErrorLabel.Text = "Cannot update with unassigned technician";
+                            updateErrorLabel.ForeColor = Color.Red;
+                            updateErrorLabel.Visible = true;
+                        }
                     }
                 }
                 else
                 {
-                    if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
-                    {
-                        myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
-                        UpdateIncident();
-                    }
-                    else
-                    {
-                        updateErrorLabel.Text = "Cannot update with unassigned technician";
-                        updateErrorLabel.ForeColor = Color.Red;
-                        updateErrorLabel.Visible = true;
-                    }
-
+                    updateErrorLabel.Text = "Description limit is reached only technician can be updated";
+                    updateErrorLabel.ForeColor = Color.Red;
+                    updateErrorLabel.Visible = true;
                 }
-
             }
         }
 
@@ -213,7 +219,7 @@ namespace TechSupport.UserControls
                     {
                         var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
                         myIncident.Description = Truncate(description, 200);
-                       
+
                     }
                     result = MessageBox.Show("Would you like to close the incident? You cannot update the incident after closing it!", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (result == DialogResult.OK)

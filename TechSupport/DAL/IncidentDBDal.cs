@@ -345,12 +345,19 @@ namespace TechSupport.DAL
         {
             using var connection = DBConnection.GetConnection();
             connection.Open();
-            const string query = "update incidents " + 
+            string query = "update incidents " + 
                 "set TechID = @techID, Description = @description " +
                 "where IncidentID = @incidentID";
+            var techID = GetTechID(myIncident.TechnicianName);
+            if (techID == 0)
+            {
+                query = "update incidents " +
+                "set TechID = null, Description = @description " +
+                "where IncidentID = @incidentID";
+            }
             using var command = new SqlCommand(query, connection);
             command.Parameters.Add("@techID", System.Data.SqlDbType.Int);
-            command.Parameters["@techID"].Value = GetTechID(myIncident.TechnicianName);
+            command.Parameters["@techID"].Value = techID;
             command.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
             command.Parameters["@description"].Value = myIncident.Description;
             command.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
