@@ -185,6 +185,7 @@
             // 
             // textToAddTextBox
             // 
+            textToAddTextBox.Enabled = false;
             textToAddTextBox.Location = new Point(133, 378);
             textToAddTextBox.Multiline = true;
             textToAddTextBox.Name = "textToAddTextBox";
@@ -212,6 +213,7 @@
             // 
             // updateButton
             // 
+            updateButton.Enabled = false;
             updateButton.Location = new Point(133, 483);
             updateButton.Name = "updateButton";
             updateButton.Size = new Size(75, 23);
@@ -222,6 +224,7 @@
             // 
             // closeButton
             // 
+            closeButton.Enabled = false;
             closeButton.Location = new Point(224, 483);
             closeButton.Name = "closeButton";
             closeButton.Size = new Size(75, 23);

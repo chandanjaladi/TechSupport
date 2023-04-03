@@ -29,6 +29,12 @@ namespace TechSupport.UserControls
         {
             InitializeComponent();
             _controller = new IncidentController();
+            UpdateTechnicians();
+            myIncident = new UpdateIncident();
+        }
+
+        private void UpdateTechnicians()
+        {
             techniciansNames = _controller.GetTechniciansNames();
             techniciansNames.Add("-- Unassigned --");
             foreach (string technician in techniciansNames)
@@ -36,10 +42,6 @@ namespace TechSupport.UserControls
                 technicianComboBox.Items.Add(technician);
             }
             technicianComboBox.SelectedIndex = 0;
-            myIncident = new UpdateIncident();
-            updateButton.Enabled = false;
-            closeButton.Enabled = false;
-            textToAddTextBox.Enabled = false;
         }
 
         private void incidentTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -85,7 +87,7 @@ namespace TechSupport.UserControls
                     productTextBox.Text = myIncident.ProductCode;
                     titleTextBox.Text = myIncident.Title;
                     descriptionTextBox.Text = myIncident.Description;
-                    dateOpenedTextBox.Text = myIncident.OpenedDate.ToString();
+                    dateOpenedTextBox.Text = myIncident.OpenedDate.ToShortDateString();
 
                     if (myIncident.TechnicianName != "-- Unassigned --")
                     {
@@ -125,45 +127,25 @@ namespace TechSupport.UserControls
             }
             else
             {
-                DialogResult overloadedDescription = DialogResult.OK;
+
                 if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != myIncident.TechnicianName)
                 {
 
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
-                    if (description.Length >= 200)
+                    if (CheckDescription() == DialogResult.OK)
                     {
-                        overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    }
-
-                    if (overloadedDescription == DialogResult.OK)
-                    {
+                        var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
                         myIncident.Description = Truncate(description, 200);
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
-                        _controller.UpdateIncident(myIncident);
-                        updateErrorLabel.Text = "Incident updated successfully";
-                        updateErrorLabel.ForeColor = Color.Green;
-                        updateErrorLabel.Visible = true;
-                        textToAddTextBox.Clear();
-                        descriptionTextBox.Text = myIncident.Description;
+                        UpdateIncident();
                     }
                 }
                 else if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
                 {
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
-                    if (description.Length >= 200)
+                    if (CheckDescription() == DialogResult.OK)
                     {
-                        overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    }
-
-                    if (overloadedDescription == DialogResult.OK)
-                    {
-                        myIncident.Description = Truncate(description,200);
-                        _controller.UpdateIncident(myIncident);
-                        updateErrorLabel.Text = "Incident updated successfully";
-                        updateErrorLabel.ForeColor = Color.Green;
-                        updateErrorLabel.Visible = true;
-                        textToAddTextBox.Clear();
-                        descriptionTextBox.Text = myIncident.Description;
+                        var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
+                        myIncident.Description = Truncate(description, 200);
+                        UpdateIncident();
                     }
                 }
                 else
@@ -171,10 +153,7 @@ namespace TechSupport.UserControls
                     if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
                     {
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
-                        _controller.UpdateIncident(myIncident);
-                        updateErrorLabel.Text = "Incident updated successfully";
-                        updateErrorLabel.ForeColor = Color.Green;
-                        updateErrorLabel.Visible = true;
+                        UpdateIncident();
                     }
                     else
                     {
@@ -186,7 +165,27 @@ namespace TechSupport.UserControls
                 }
 
             }
-            //ClearAll();
+        }
+
+        private DialogResult CheckDescription()
+        {
+            DialogResult overloadedDescription = DialogResult.OK;
+            var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
+            if (description.Length >= 200)
+            {
+                overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            }
+            return overloadedDescription;
+        }
+
+        private void UpdateIncident()
+        {
+            _controller.UpdateIncident(myIncident);
+            updateErrorLabel.Text = "Incident updated successfully";
+            updateErrorLabel.ForeColor = Color.Green;
+            updateErrorLabel.Visible = true;
+            textToAddTextBox.Clear();
+            descriptionTextBox.Text = myIncident.Description;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -194,58 +193,32 @@ namespace TechSupport.UserControls
             if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
             {
                 DialogResult result;
-                DialogResult overloadedDescription = DialogResult.OK;
                 if (textToAddTextBox.Text != "" && technicianComboBox.SelectedItem.ToString() != myIncident.TechnicianName)
                 {
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
-
-                    if (description.Length >= 200)
+                    if (CheckDescription() == DialogResult.OK)
                     {
-                        overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    }
-
-                    if (overloadedDescription == DialogResult.OK)
-                    {
+                        var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
                         myIncident.Description = Truncate(description, 200);
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
                     }
-                    result = MessageBox.Show("Would you like to close the incident?","Closing incident",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
-                    if (result == DialogResult.OK)
-                    {
-                        _controller.UpdateIncident(myIncident);
-                        _controller.CloseIncident(myIncident);
-                        updateErrorLabel.Text = "Incident closed successfully";
-                        updateErrorLabel.ForeColor = Color.Green;
-                        updateErrorLabel.Visible = true;
-                        textToAddTextBox.Clear();
-                        descriptionTextBox.Text = myIncident.Description;
-                    }
-                    
-                }
-                else if (textToAddTextBox.Text != "")
-                {
-                    var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
-                    if (description.Length >= 200)
-                    {
-                        overloadedDescription = MessageBox.Show("Description will be truncated as it is longer than 200 characters", "Truncate Description", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    }
-
-                    if (overloadedDescription == DialogResult.OK)
-                    {
-                        myIncident.Description = Truncate(description, 200);
-                        myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
-                    }
-
                     result = MessageBox.Show("Would you like to close the incident? You cannot update the incident after closing it!", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (result == DialogResult.OK)
                     {
-                        _controller.UpdateIncident(myIncident);
-                        _controller.CloseIncident(myIncident);
-                        updateErrorLabel.Text = "Incident closed successfully";
-                        updateErrorLabel.ForeColor = Color.Green;
-                        updateErrorLabel.Visible = true;
-                        textToAddTextBox.Clear();
-                        descriptionTextBox.Text = myIncident.Description;
+                        CloseIncident();
+                    }
+                }
+                else if (textToAddTextBox.Text != "")
+                {
+                    if (CheckDescription() == DialogResult.OK)
+                    {
+                        var description = descriptionTextBox.Text + "\r\n" + "<" + DateTime.Now.ToShortDateString() + ">" + textToAddTextBox.Text;
+                        myIncident.Description = Truncate(description, 200);
+                       
+                    }
+                    result = MessageBox.Show("Would you like to close the incident? You cannot update the incident after closing it!", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.OK)
+                    {
+                        CloseIncident();
                     }
                 }
                 else
@@ -253,18 +226,12 @@ namespace TechSupport.UserControls
                     if (technicianComboBox.SelectedItem.ToString() != "-- Unassigned --")
                     {
                         myIncident.TechnicianName = technicianComboBox.SelectedItem.ToString();
-                        
+
                         result = MessageBox.Show("Would you like to close the incident?", "Closing incident", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         if (result == DialogResult.OK)
                         {
-                            _controller.UpdateIncident(myIncident);
-                            _controller.CloseIncident(myIncident);
-
-                            updateErrorLabel.Text = "Incident closed successfully";
-                            updateErrorLabel.ForeColor = Color.Green;
-                            updateErrorLabel.Visible = true;
+                            CloseIncident();
                         }
-
                     }
                     else
                     {
@@ -272,7 +239,6 @@ namespace TechSupport.UserControls
                         updateErrorLabel.ForeColor = Color.Red;
                         updateErrorLabel.Visible = true;
                     }
-
                 }
             }
             else
@@ -281,6 +247,13 @@ namespace TechSupport.UserControls
                 updateErrorLabel.ForeColor = Color.Red;
                 updateErrorLabel.Visible = true;
             }
+        }
+
+        private void CloseIncident()
+        {
+            UpdateIncident();
+            _controller.CloseIncident(myIncident);
+            updateErrorLabel.Text = "Incident closed successfully";
         }
 
         private string Truncate(string variable, int Length)
